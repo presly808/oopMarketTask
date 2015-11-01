@@ -1,10 +1,15 @@
 package team3.frame;
 
+import team1.model.*;
 import team3.controller.AdminController;
 import team3.controller.IAdminController;
 import team3.controller.ISellerController;
 import team3.controller.SellerController;
 import team3.model.*;
+import team3.model.Admin;
+import team3.model.MarketDB;
+import team3.model.Seller;
+import team3.model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,10 +29,9 @@ public class LoginFrame extends JFrame{
     private JPasswordField passField;
     private JButton enterButton;
 
-    public LoginFrame(){
+    public LoginFrame(MarketDB marketDB){
 
-        marketDB = new MarketDB();
-        // In future it has to load Database from .txt file by means of serialization each time it is run
+        this.marketDB = marketDB;
 
         setSize(250, 150);
         setTitle("Authorization");
