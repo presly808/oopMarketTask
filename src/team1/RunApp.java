@@ -18,5 +18,7 @@ public class RunApp {
 
         adminView.startMenu();
 
+        System.out.println("sdfjsdkfjsldkfhslkdjfsdf");
+
     }
 }
