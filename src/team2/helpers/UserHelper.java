@@ -33,7 +33,7 @@ public class UserHelper {
             return user;
         }
 
-        return new UserGuest();
+        return null;//new UserGuest();
     }
 
 /*
