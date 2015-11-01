@@ -1,4 +1,4 @@
-package team2.model;
+package market.model;
 
 import java.util.ArrayList;
 import java.util.Date;

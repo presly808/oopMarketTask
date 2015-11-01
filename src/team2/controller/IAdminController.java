@@ -1,6 +1,6 @@
-package team2.controller;
+package market.controller;
 
-import team2.model.Product;
+import market.model.Product;
 
 import java.util.ArrayList;
 
