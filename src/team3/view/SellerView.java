@@ -131,7 +131,7 @@ public class SellerView {
     public void showExternalMenu(){
         System.out.println("1.Serve customer");
         System.out.println("2.Scan product info");
-        System.out.println("3.EXIT");
+        System.out.println("3.BACK TO LOGIN MENU");
     }
 
 

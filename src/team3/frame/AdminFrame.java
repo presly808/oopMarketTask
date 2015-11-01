@@ -21,6 +21,7 @@ public class AdminFrame extends JFrame {
 
     private void init() {
 
+
         JLabel listTitle = new JLabel();
         JTextArea marketProductsListArea = new JTextArea();
 
@@ -36,6 +37,7 @@ public class AdminFrame extends JFrame {
         southButtonsPanel.add(eraseButton);
         southButtonsPanel.add(findButton);
         southButtonsPanel.add(signOutButton);
+
 
 
         getContentPane().add(listTitle, BorderLayout.NORTH);

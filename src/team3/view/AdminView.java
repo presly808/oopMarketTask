@@ -54,7 +54,7 @@ public class AdminView {
         System.out.println("2.Delete product");
         System.out.println("3.Find product");
         System.out.println("4.Get all product");
-        System.out.println("5.EXIT");
+        System.out.println("5.BACK TO LOGIN MENU");
     }
 
     public void addProductMenu(Scanner sc){
