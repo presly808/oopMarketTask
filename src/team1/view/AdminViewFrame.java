@@ -61,7 +61,6 @@ public class AdminViewFrame extends JFrame{
             showJFrame.setSize(600, 200);
             showJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
-
             AdminController adminController = new AdminController(marketDB);
             ArrayList arrayList = adminController.getAll();
 
