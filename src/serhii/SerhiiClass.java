@@ -8,4 +8,5 @@ public class SerhiiClass {
     public static void main(String[] args) {
         System.out.println("test");
     }
+    // DIMA COMMENT
 }
