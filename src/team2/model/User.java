@@ -1,4 +1,4 @@
-package market.model;
+package team2.model;
 
 import java.io.Serializable;
 
