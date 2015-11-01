@@ -6,6 +6,7 @@ package team3.model;
 public class Admin extends User {
 
     public Admin() {
+
     }
 
     public Admin(int id, String login, String pass) {
