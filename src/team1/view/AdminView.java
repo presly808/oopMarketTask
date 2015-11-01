@@ -3,7 +3,7 @@ package team1.view;
 import team1.controller.IAdminController;
 import team1.model.Admin;
 import team1.model.Product;
-import ua.artcode.week2.day2.model.Dog;
+
 
 import java.util.Scanner;
 
