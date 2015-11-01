@@ -1,8 +1,7 @@
-package market.helpers;
+package team2;
 
-import market.model.Admin;
-import market.model.User;
-import ua.artcode.utils.io.IOHelper;
+import team2.model.User;
+import team2.helpers.IOHelper;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

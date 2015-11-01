@@ -1,11 +1,11 @@
-package market;
+package team2;
 
-import market.controller.AdminController;
-import market.controller.IAdminController;
-import market.model.Admin;
-import market.model.MarketDB;
-import market.view.AdminView;
 
+import team1.controller.AdminController;
+import team1.model.Admin;
+import team1.model.MarketDB;
+import team1.view.AdminView;
+import team1.controller.IAdminController;
 
 public class RunApp {
 
