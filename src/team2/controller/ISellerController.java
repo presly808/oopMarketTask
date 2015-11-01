@@ -1,4 +1,4 @@
-package team2.controller;
+package market.controller;
 
 /**
  * Created by serhii on 25.10.15.

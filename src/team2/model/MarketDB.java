@@ -1,4 +1,4 @@
-package team2.model;
+package market.model;
 
 import java.util.ArrayList;
 
@@ -9,12 +9,14 @@ public class MarketDB {
 
 
     private ArrayList<Product> products = new ArrayList<>();
-    private ArrayList<Admin> admins = new ArrayList<>();
-    private ArrayList<Seller> sellers = new ArrayList<>();
+    //private ArrayList<Admin> admins = new ArrayList<>();
+    //private ArrayList<Seller> sellers = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Bill> bills = new ArrayList<>();
     private double amountMoney;
 
     public MarketDB() {
+        //this.users =
     }
 
     public ArrayList<Product> getProducts() {
@@ -24,7 +26,7 @@ public class MarketDB {
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
-
+/*
     public ArrayList<Admin> getAdmins() {
         return admins;
     }
@@ -40,7 +42,7 @@ public class MarketDB {
     public void setSellers(ArrayList<Seller> sellers) {
         this.sellers = sellers;
     }
-
+*/
     public ArrayList<Bill> getBills() {
         return bills;
     }

@@ -1,4 +1,4 @@
-package team2.model;
+package market.model;
 
 /**
  * Created by serhii on 25.10.15.

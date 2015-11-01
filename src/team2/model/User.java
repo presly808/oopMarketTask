@@ -1,9 +1,11 @@
-package team2.model;
+package market.model;
+
+import java.io.Serializable;
 
 /**
  * Created by serhii on 25.10.15.
  */
-public class User {
+public class User implements Serializable{
 
     private int id;
     private String login;

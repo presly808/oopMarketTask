@@ -1,8 +1,9 @@
-package team2.view;
+package market.view;
 
-import team2.controller.IAdminController;
-import team2.model.Admin;
-import team2.model.Product;
+import market.controller.IAdminController;
+import market.model.Admin;
+import market.model.Product;
+import ua.artcode.week2.day2.model.Dog;
 
 import java.util.Scanner;
 
