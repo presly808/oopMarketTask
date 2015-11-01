@@ -11,7 +11,5 @@ public class TestLoginFrame {
 
         new LoginFrame();
 
-
-
     }
 }

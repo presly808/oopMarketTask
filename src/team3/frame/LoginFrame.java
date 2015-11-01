@@ -7,6 +7,7 @@ import team3.controller.SellerController;
 import team3.model.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -17,23 +18,18 @@ import java.util.ArrayList;
  */
 public class LoginFrame extends JFrame{
 
-    private MarketDB marketDB = new MarketDB();
-
-
-
-
-
-
-
-
-    // In future it has to load Database from .txt file by means of serialization each time it is run
+    private MarketDB marketDB;
 
     private JTextField loginField;
     private JPasswordField passField;
     private JButton enterButton;
 
     public LoginFrame(){
-        setSize(80, 150);
+
+        marketDB = new MarketDB();
+        // In future it has to load Database from .txt file by means of serialization each time it is run
+
+        setSize(250, 150);
         setTitle("Authorization");
         init();
         setVisible(true);
@@ -42,9 +38,11 @@ public class LoginFrame extends JFrame{
 
     private void init() {
 
+        JLabel login = new JLabel("Login: ");
+        JLabel pass = new JLabel("Password: ");
+
         loginField = new JTextField();
         passField = new JPasswordField();
-
 
         enterButton = new JButton("Enter");
         enterButton.addActionListener(new ActionListener() {
@@ -75,7 +73,20 @@ public class LoginFrame extends JFrame{
 
                 }
             }
+
+
         });
+
+
+        JPanel northInputPanel = new JPanel(new GridLayout(2,2));
+        northInputPanel.add(login);
+        northInputPanel.add(loginField);
+        northInputPanel.add(pass);
+        northInputPanel.add(passField);
+
+        getContentPane().add(northInputPanel, BorderLayout.NORTH);
+        getContentPane().add(enterButton, BorderLayout.SOUTH);
+
 
 
 

@@ -1,7 +1,9 @@
 package team3.test_frame;
 
-
 import team3.frame.SellerFrame;
+
+import team3.controller.SellerController;
+import team3.model.MarketDB;
 
 /**
  * Created by Evgenia on 11/1/15.
@@ -9,6 +11,7 @@ import team3.frame.SellerFrame;
 public class TestSellerFrame {
 
     public static void main(String[] args) {
-        //new SellerFrame();
+        new SellerFrame(new SellerController(new MarketDB()));
+
     }
 }
