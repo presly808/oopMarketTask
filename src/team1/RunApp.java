@@ -20,28 +20,15 @@ public class RunApp {
         Seller seller = new Seller (2, "serhii", "0987");
 
         MarketDB marketDB = new MarketDB();
+        marketDB.getProducts().add(new Product("48205236","bread",26.5));
+        marketDB.getProducts().add(new Product("48205258","milk",28.5));
+        marketDB.getProducts().add(new Product("48205289","apple",37.0));
+        marketDB.getProducts().add(new Product("123", "Design Patterns", 222.22));
+        marketDB.getProducts().add(new Product("456", "JAVA", 333.33));
         marketDB.getAdmins().add(admin);
         marketDB.getSellers().add(seller);
-        AdminController adminController = new AdminController(marketDB);
-        SellerController sellerController = new SellerController(marketDB);
-        AdminView adminView = new AdminView(admin,adminController);
-        SellerView sellerView = new SellerView(seller,sellerController);
-
-        LoginPass loginPass = new LoginPass(marketDB);
 
         LoginPassFrame loginPassFrame = new LoginPassFrame(marketDB);
-        /*User user = loginPass.login();
-
-        if (user instanceof Admin){
-            adminView.startMenu();
-        } else if (user instanceof Seller){
-            sellerView.startMenu();
-        } else {
-            System.out.println("Authentication failed");
-        }*/
-
-
-        // serhii comment
 
 
     }
