@@ -1,5 +1,7 @@
 package team3.frame;
 
+import team3.controller.ISellerController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,6 +10,8 @@ import java.awt.*;
  */
 public class SellerFrame extends JFrame {
 
+    ISellerController iSellerController;
+
     private JTextArea fileContentArea;
     private JButton scanButton;
     private JButton billPaidButton;
@@ -15,7 +19,10 @@ public class SellerFrame extends JFrame {
     private JButton cancelButton;
     private JButton signOutButton;
 
-    public SellerFrame(){
+    public SellerFrame(ISellerController iSellerController){
+
+        this.iSellerController = iSellerController;
+
         setSize(600,1000);
         init();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

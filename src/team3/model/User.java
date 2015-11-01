@@ -50,4 +50,15 @@ public class User {
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        User user = (User) obj;
+
+        return login != null && pass != null ? login.equals(user.login) && pass.equals(user.pass) : false;
+
+    }
 }
