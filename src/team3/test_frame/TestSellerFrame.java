@@ -9,6 +9,6 @@ import team3.frame.SellerFrame;
 public class TestSellerFrame {
 
     public static void main(String[] args) {
-        new SellerFrame();
+        //new SellerFrame();
     }
 }

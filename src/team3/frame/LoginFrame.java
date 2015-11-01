@@ -26,8 +26,6 @@ public class LoginFrame extends JFrame{
 
 
 
-
-
     // In future it has to load Database from .txt file by means of serialization each time it is run
 
     private JTextField loginField;
@@ -46,6 +44,7 @@ public class LoginFrame extends JFrame{
 
         loginField = new JTextField();
         passField = new JPasswordField();
+
 
         enterButton = new JButton("Enter");
         enterButton.addActionListener(new ActionListener() {
