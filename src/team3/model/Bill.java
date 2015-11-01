@@ -8,17 +8,23 @@ import java.util.Date;
  */
 public class Bill {
 
+    private static int idDB = 10000;
     private int id;
     private Seller seller;
-    private Date date;
+    private String date;
     private double amountPrice;
     private String dayWish;
 
     private ArrayList<Product> products = new ArrayList<>();
 
-    public Bill(int id, Seller seller) {
-        this.id = id;
+    {
+        idDB++;
+    }
+
+    public Bill(Seller seller, String date) {
+        this.id = idDB;
         this.seller = seller;
+        this.date = date;
     }
 
     public int getId() {
@@ -37,11 +43,11 @@ public class Bill {
         this.seller = seller;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
