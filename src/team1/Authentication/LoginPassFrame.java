@@ -44,8 +44,7 @@ public class LoginPassFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             LoginPass loginPass = new LoginPass(marketDB);
-            loginPass.loginFrame(login.getText(),password.getText());
-            System.out.println("Button is pressed");
+            loginPass.loginFrame(login.getText(), password.getText());
         }
     }
 
