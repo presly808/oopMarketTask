@@ -1,7 +1,7 @@
-package market.view;
+package team2.view;
 
-import market.controller.AuthController;
-import market.model.User;
+import team2.controller.AuthController;
+import team2.model.User;
 
 /**
  * Created by Dima on 01.11.2015.

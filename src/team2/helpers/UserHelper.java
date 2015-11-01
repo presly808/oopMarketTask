@@ -1,4 +1,4 @@
-package team2;
+package team2.helpers;
 
 import team2.model.User;
 import team2.helpers.IOHelper;

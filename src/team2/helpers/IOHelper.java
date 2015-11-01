@@ -1,6 +1,5 @@
-package ua.artcode.utils.io;
+package team2.helpers;
 
-import ua.artcode.week6.serial.Robocop;
 
 import java.io.*;
 import java.util.Scanner;
@@ -10,7 +9,7 @@ import java.util.Scanner;
  */
 public class IOHelper {
 
-
+/*
     public static<T> void formatSave(String path, T o, MySerializator<T> serilaizator){
         try (PrintWriter pw = new PrintWriter(path)){
             String strObj = serilaizator.format(o);
@@ -32,43 +31,7 @@ public class IOHelper {
 
     }
 
-    public static Robocop readRobocop(String path) throws FileNotFoundException {
-        Scanner sc = new Scanner(new File(path));
-        Robocop robocop = new Robocop();
-
-        while(sc.hasNextLine()){
-            String line = sc.nextLine();
-            String[] parts = line.split("=");
-            String fieldName = parts[0];
-            String fieldValue = parts[1];
-            if("model".equals(fieldName)){
-                robocop.setModel(fieldValue);
-            } else if("health".equals(fieldName)){
-                robocop.setHealth(Integer.parseInt(fieldValue));
-            } //...
-        }
-
-
-        return robocop;
-
-    }
-
-    public static void saveRobocop(String path, Robocop robocop){
-        try (PrintWriter pw = new PrintWriter(path)){
-
-            pw.printf("%s=%s\n", "model", robocop.getModel());
-            pw.printf("%s=%s\n", "health", robocop.getHealth());
-            pw.printf("%s=%s\n", "power", robocop.getPower());
-            pw.printf("%s=%s\n", "price", robocop.getPrice());
-
-            pw.flush();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-
+*/
     public static void saveObj(String path, Object object) {
 
         // try-with-resources since 1.7

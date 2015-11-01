@@ -1,6 +1,6 @@
-package market.controller;
+package team2.controller;
 
-import market.model.MarketDB;
+import team2.model.MarketDB;
 
 /**
  * Created by Dima on 01.11.2015.
