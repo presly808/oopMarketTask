@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Arc2D;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class AdminViewFrame extends JFrame{
 
     private MarketDB marketDB; //временная переменная для теста
+    private AdminController adminController;
 
     public AdminViewFrame(MarketDB marketDB)  //marketDB - временный параметр для теста
     {
@@ -26,6 +28,7 @@ public class AdminViewFrame extends JFrame{
         init();
         setVisible(true);
         this.marketDB = marketDB;
+        adminController = new AdminController(marketDB);
     }
 
     void init(){
@@ -78,7 +81,7 @@ public class AdminViewFrame extends JFrame{
             showJFrame.setSize(600, 200);
             showJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
-            AdminController adminController = new AdminController(marketDB);
+            //AdminController adminController = new AdminController(marketDB);
             ArrayList arrayList = adminController.getAll();
 
             DefaultListModel listModel = new DefaultListModel();
@@ -98,7 +101,51 @@ public class AdminViewFrame extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Button Add is pressed");
+
+            JFrame addJFrame = new JFrame();
+            addJFrame.setTitle("Add new product");
+            addJFrame.setSize(600, 200);
+            addJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+            JTextField barCode = new JTextField("");
+            JTextField model = new JTextField("");
+            JTextField price = new JTextField("");
+
+            addJFrame.setLayout(new GridLayout(4, 2));
+
+            addJFrame.getContentPane().add(new JLabel("barcode:"));
+            addJFrame.getContentPane().add(barCode);
+            addJFrame.getContentPane().add(new JLabel("model:"));
+            addJFrame.getContentPane().add(model);
+            addJFrame.getContentPane().add(new JLabel("price:"));
+            addJFrame.getContentPane().add(price);
+
+            JButton addButton = new JButton("OK");
+            addButton.setMnemonic('O');
+            addButton.setToolTipText("press after typing all fields");
+            //addButton.addActionListener(new addProductActionListener(barCode.getText(), model.getText(), Double.parseDouble(price.getText())));
+            addButton.addActionListener(new addProductActionListener(addJFrame));
+            addJFrame.getContentPane().add(addButton);
+
+            addJFrame.setVisible(true);
+
+        }
+    }
+
+    private class addProductActionListener implements ActionListener{
+
+        private JFrame jFrame;
+
+        public addProductActionListener(JFrame jFrame) {
+             this.jFrame = jFrame;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String barCode = jFrame.getContentPane().getComponent(1).getInputContext().toString();
+            String model = jFrame.getContentPane().getComponent(3).getInputContext().toString();
+            adminController.addProduct(barCode, model, 0.0);
+            jFrame.setVisible(false);
         }
     }
 
