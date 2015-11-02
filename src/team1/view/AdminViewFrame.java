@@ -16,6 +16,8 @@ import java.util.ArrayList;
  */
 public class AdminViewFrame extends JFrame{
 
+
+
     private MarketDB marketDB; //временная переменная для теста
     private AdminController adminController;
 
@@ -98,18 +100,18 @@ public class AdminViewFrame extends JFrame{
     }
 
     private class addActionListener implements ActionListener{
+        JFrame addJFrame = new JFrame();
+        JTextField barCode = new JTextField("");
+        JTextField model = new JTextField("");
+        JTextField price = new JTextField("");
 
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            JFrame addJFrame = new JFrame();
+
             addJFrame.setTitle("Add new product");
             addJFrame.setSize(600, 200);
             addJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-
-            JTextField barCode = new JTextField("");
-            JTextField model = new JTextField("");
-            JTextField price = new JTextField("");
 
             addJFrame.setLayout(new GridLayout(4, 2));
 
@@ -124,33 +126,21 @@ public class AdminViewFrame extends JFrame{
             addButton.setMnemonic('O');
             addButton.setToolTipText("press after typing all fields");
             //addButton.addActionListener(new addProductActionListener(barCode.getText(), model.getText(), Double.parseDouble(price.getText())));
-            addButton.addActionListener(new addProductActionListener(addJFrame));
-            addJFrame.getContentPane().add(addButton);
+            addButton.addActionListener(new ActionListener() {
+                                            @Override
+                                            public void actionPerformed(ActionEvent e) {
+                                                adminController.addProduct(barCode.getText(), model.getText(), Double.parseDouble(price.getText()));
+                                                addJFrame.setVisible(false);
+                                            }
+                                        });
 
+            addJFrame.getContentPane().add(addButton);
             addJFrame.setVisible(true);
 
         }
     }
 
-    private class addProductActionListener implements ActionListener{
-
-        private JFrame jFrame;
-
-        public addProductActionListener(JFrame jFrame) {
-             this.jFrame = jFrame;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String barCode = jFrame.getContentPane().getComponent(1).getInputContext().toString();
-            String model = jFrame.getContentPane().getComponent(3).getInputContext().toString();
-            adminController.addProduct(barCode, model, 0.0);
-            jFrame.setVisible(false);
-        }
-    }
-
-
-    private class renameActionListener implements ActionListener{
+   private class renameActionListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
