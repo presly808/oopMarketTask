@@ -171,8 +171,10 @@ public class AdminViewFrame extends JFrame{
         private JTextField newLogin, newPassword;
         private JFormattedTextField newId;
         private JComboBox type;
+        private JLabel infoMessage;
         private String login, password;
         private int id;
+        boolean doesExist;
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -204,6 +206,8 @@ public class AdminViewFrame extends JFrame{
             addUserFrame.getContentPane().add(type);
             JButton saveButton = new JButton("Save");
             addUserFrame.getContentPane().add(saveButton);
+            infoMessage = new JLabel("", SwingConstants.CENTER);
+            addUserFrame.getContentPane().add(infoMessage);
             addUserFrame.setVisible(true);
 
             saveButton.addActionListener(new ActionListener() {
@@ -213,12 +217,51 @@ public class AdminViewFrame extends JFrame{
                     login = newLogin.getText();
                     password = newPassword.getText();
                     if (type.getSelectedIndex() == 0) {
-                        marketDB.getAdmins().add(new Admin(id, login, password));
-                        System.out.println(marketDB.getAdmins());
+                        for (Admin admin : marketDB.getAdmins()) {
+                            if (admin.getId() == id || admin.getLogin().equals(login)) {
+                                doesExist = true;
+                            }
+                        }
+                        if (doesExist == false) {
+                            marketDB.getAdmins().add(new Admin(id, login, password));
+                            userAdded();
+                            System.out.println(marketDB.getAdmins());
+                        } else {
+                            errorMessage();
+                        }
                     } else {
-                        marketDB.getSellers().add(new Seller(id, login, password));
-                        System.out.println(marketDB.getSellers());
+                        for (Seller seller : marketDB.getSellers()) {
+                            if (seller.getId() == id || seller.getLogin().equals(login)) {
+                                doesExist = true;
+                            }
+                        }
+                        if (doesExist == false) {
+                            marketDB.getSellers().add(new Seller(id, login, password));
+                            userAdded();
+                            System.out.println(marketDB.getSellers());
+                        } else {
+                            errorMessage();
+                        }
                     }
+                }
+
+                private void userAdded() {
+                    infoMessage.setText(login + " added");
+                    infoMessage.setForeground(new Color(0, 150, 0));
+                    newId.setBorder(newPassword.getBorder());
+                    newLogin.setBorder(newPassword.getBorder());
+                    newId.setValue(null);
+                    newLogin.setText("");
+                    newPassword.setText("");
+                }
+
+                private void errorMessage() {
+                    infoMessage.setText("login or id already exists");
+                    infoMessage.setForeground(Color.red);
+                    newId.setBorder(BorderFactory.createLineBorder(Color.red));
+                    newLogin.setBorder(BorderFactory.createLineBorder(Color.red));
+                    newPassword.setText("");
+                    doesExist=false;
                 }
             });
         }
