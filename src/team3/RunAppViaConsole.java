@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 
 
-public class RunApp {
+public class RunAppViaConsole {
 
     public static void main(String[] args) {
 

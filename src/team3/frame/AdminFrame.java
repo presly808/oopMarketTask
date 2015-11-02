@@ -1,5 +1,6 @@
 package team3.frame;
 
+import org.omg.IOP.ExceptionDetailMessage;
 import team3.controller.IAdminController;
 import team3.model.MarketDB;
 
@@ -8,6 +9,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 /**
  * Created by 1 on 01.11.2015.
@@ -39,6 +41,8 @@ public class AdminFrame extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                new AddProductFrame();
 
             }
         });
@@ -84,6 +88,51 @@ public class AdminFrame extends JFrame {
 
 
 
+
+
+    }
+
+    private class AddProductFrame {
+
+        public AddProductFrame(){
+
+            setSize(250,250);
+            setTitle("Add product");
+            initAdd();
+            setVisible(true);
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        }
+
+        private void initAdd() {
+
+            JLabel barCodeLog = new JLabel("Barcode: ");
+            JLabel modelLog = new JLabel("Model: ");
+            JLabel priceLog = new JLabel("Price: ");
+
+            JTextField barCode = new JTextField();
+            JTextField model = new JTextField();
+            JTextField price = new JTextField();
+
+            JButton addProductButton = new JButton("Add");
+            addProductButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    try {
+                        iAdminController.addProduct(barCode.getText(), model.getText(), Double.parseDouble(price.getText()) );
+
+                    } catch (ClassCastException e1) {
+                        JOptionPane.showMessageDialog(AdminFrame.this, "Cannot convert price", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                    }
+
+
+                }
+            });
+
+
+        }
 
 
     }

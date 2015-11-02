@@ -54,7 +54,14 @@ public class User {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (obj == null) return false;
+        if (obj.getClass() != User.class && obj.getClass() != Admin.class  && obj.getClass() != Seller.class)
+            return false;
+
+        if ((getClass() == Admin.class && obj.getClass() == Seller.class) ||
+                (getClass() == Seller.class && obj.getClass() == Admin.class))
+            return false;
+
 
         User user = (User) obj;
 

@@ -53,9 +53,12 @@ public class LoginFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                String login = loginField.getText();
+                String pass = String.valueOf(passField.getPassword());
+
                 User tempUserToAuthorize = new User();
-                tempUserToAuthorize.setLogin(loginField.getText());
-                tempUserToAuthorize.setPass(passField.getPassword().toString());
+                tempUserToAuthorize.setLogin(login);
+                tempUserToAuthorize.setPass(pass);
 
                 int index = marketDB.getUsers().indexOf(tempUserToAuthorize);
 

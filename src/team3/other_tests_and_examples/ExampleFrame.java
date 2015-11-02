@@ -1,4 +1,4 @@
-package team3;
+package team3.other_tests_and_examples;
 
 import team3.IOHelper.IOHelper;
 
