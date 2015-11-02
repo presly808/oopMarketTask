@@ -125,14 +125,13 @@ public class AdminViewFrame extends JFrame{
             JButton addButton = new JButton("OK");
             addButton.setMnemonic('O');
             addButton.setToolTipText("press after typing all fields");
-            //addButton.addActionListener(new addProductActionListener(barCode.getText(), model.getText(), Double.parseDouble(price.getText())));
             addButton.addActionListener(new ActionListener() {
-                                            @Override
-                                            public void actionPerformed(ActionEvent e) {
-                                                adminController.addProduct(barCode.getText(), model.getText(), Double.parseDouble(price.getText()));
-                                                addJFrame.setVisible(false);
-                                            }
-                                        });
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    adminController.addProduct(barCode.getText(), model.getText(), Double.parseDouble(price.getText()));
+                    addJFrame.setVisible(false);
+                }
+            });
 
             addJFrame.getContentPane().add(addButton);
             addJFrame.setVisible(true);
@@ -147,7 +146,6 @@ public class AdminViewFrame extends JFrame{
             System.out.println("Button  Rename is pressed");
         }
     }
-
 
     private class findActionListener implements ActionListener{
 
