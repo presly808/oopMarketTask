@@ -33,26 +33,38 @@ public class AdminViewFrame extends JFrame{
         setLayout(new GridLayout(6, 1));
 
         JButton showButton = new JButton("Show All");
+        showButton.setMnemonic('S');
+        showButton.setToolTipText("press to show all products");
         showButton.addActionListener(new showActionListener());
         getContentPane().add(showButton);
 
         JButton addButton = new JButton("Add");
+        addButton.setMnemonic('A');
+        addButton.setToolTipText("press to add new product");
         addButton.addActionListener(new addActionListener());
         getContentPane().add(addButton);
 
         JButton renameButton = new JButton("Rename");
+        renameButton.setMnemonic('R');
+        renameButton.setToolTipText("press to rename exist product");
         renameButton.addActionListener(new renameActionListener());
         getContentPane().add(renameButton);
 
         JButton deleteButton = new JButton("Delete");
+        deleteButton.setMnemonic('D');
+        deleteButton.setToolTipText("press to delete product");
         deleteButton.addActionListener(new deleteActionListener());
         getContentPane().add(deleteButton);
 
         JButton findButton = new JButton("Find");
+        findButton.setMnemonic('F');
+        findButton.setToolTipText("press to find product");
         findButton.addActionListener(new findActionListener());
         getContentPane().add(findButton);
 
         JButton addUserButton = new JButton("Add User");
+        addUserButton.setMnemonic('U');
+        addUserButton.setToolTipText("press to add user");
         addUserButton.addActionListener(new addUserActionListener());
         getContentPane().add(addUserButton);
     }
