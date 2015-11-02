@@ -2,13 +2,17 @@ package team1.view;
 
 import team1.Authentication.LoginPass;
 import team1.controller.AdminController;
+import team1.model.Admin;
 import team1.model.MarketDB;
+import team1.model.Seller;
 
 import javax.swing.*;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Arc2D;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 /**
@@ -164,30 +168,59 @@ public class AdminViewFrame extends JFrame{
     }
 
     private class addUserActionListener implements ActionListener{
-        private JTextField newId;
-        private JTextField newLogin;
-        private JTextField newPassword;
+        private JTextField newLogin, newPassword;
+        private JFormattedTextField newId;
+        private JComboBox type;
+        private String login, password;
+        private int id;
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            NumberFormat format = NumberFormat.getInstance();
+            NumberFormatter formatter = new NumberFormatter(format);
+            formatter.setValueClass(Integer.class);
+            formatter.setAllowsInvalid(false);
+
             JFrame addUserFrame = new JFrame();
             addUserFrame.setTitle("Add User");
-            addUserFrame.setSize(300, 150);
+            addUserFrame.setSize(350, 180);
             addUserFrame.setLocationRelativeTo(null);
-            addUserFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            newId = new JTextField("");
+            addUserFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+            newId = new JFormattedTextField(formatter);
             newLogin = new JTextField("");
             newPassword = new JTextField("");
-            addUserFrame.setLayout(new GridLayout(4, 2));
+            addUserFrame.setLayout(new GridLayout(5, 2));
             addUserFrame.getContentPane().add(new JLabel("id:"));
             addUserFrame.getContentPane().add(newId);
             addUserFrame.getContentPane().add(new JLabel("login:"));
             addUserFrame.getContentPane().add(newLogin);
             addUserFrame.getContentPane().add(new JLabel("password:"));
             addUserFrame.getContentPane().add(newPassword);
+            addUserFrame.getContentPane().add(new JLabel("type:"));
+            String[] typeList = {"Admin","Seller"};
+            type = new JComboBox(typeList);
+            type.setSelectedIndex(1);
+            addUserFrame.getContentPane().add(type);
             JButton saveButton = new JButton("Save");
             addUserFrame.getContentPane().add(saveButton);
             addUserFrame.setVisible(true);
+
+            saveButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    id = (int) newId.getValue();
+                    login = newLogin.getText();
+                    password = newPassword.getText();
+                    if (type.getSelectedIndex() == 0) {
+                        marketDB.getAdmins().add(new Admin(id, login, password));
+                        System.out.println(marketDB.getAdmins());
+                    } else {
+                        marketDB.getSellers().add(new Seller(id, login, password));
+                        System.out.println(marketDB.getSellers());
+                    }
+                }
+            });
         }
     }
 
