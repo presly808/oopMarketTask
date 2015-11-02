@@ -42,6 +42,8 @@ public class LoginPassFrame extends JFrame {
         getContentPane().add(password);
 
         JButton okButton = new JButton("OK");
+        okButton.setMnemonic('O');
+        okButton.setToolTipText("press after typing login and password");
         okButton.addActionListener(new MyActionListener());
         getContentPane().add(okButton);
         incorrectPass = new JLabel("",SwingConstants.CENTER);

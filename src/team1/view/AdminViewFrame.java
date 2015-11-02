@@ -21,6 +21,7 @@ public class AdminViewFrame extends JFrame{
     {
         setTitle("login/pass");
         setSize(600, 200);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         init();
         setVisible(true);
@@ -29,7 +30,7 @@ public class AdminViewFrame extends JFrame{
 
     void init(){
 
-        setLayout(new GridLayout(5, 1));
+        setLayout(new GridLayout(6, 1));
 
         JButton showButton = new JButton("Show All");
         showButton.addActionListener(new showActionListener());
@@ -50,6 +51,10 @@ public class AdminViewFrame extends JFrame{
         JButton findButton = new JButton("Find");
         findButton.addActionListener(new findActionListener());
         getContentPane().add(findButton);
+
+        JButton addUserButton = new JButton("Add User");
+        addUserButton.addActionListener(new addUserActionListener());
+        getContentPane().add(addUserButton);
     }
 
     private class showActionListener implements ActionListener {
@@ -111,5 +116,32 @@ public class AdminViewFrame extends JFrame{
         }
     }
 
+    private class addUserActionListener implements ActionListener{
+        private JTextField newId;
+        private JTextField newLogin;
+        private JTextField newPassword;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFrame addUserFrame = new JFrame();
+            addUserFrame.setTitle("Add User");
+            addUserFrame.setSize(300, 150);
+            addUserFrame.setLocationRelativeTo(null);
+            addUserFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            newId = new JTextField("");
+            newLogin = new JTextField("");
+            newPassword = new JTextField("");
+            addUserFrame.setLayout(new GridLayout(4, 2));
+            addUserFrame.getContentPane().add(new JLabel("id:"));
+            addUserFrame.getContentPane().add(newId);
+            addUserFrame.getContentPane().add(new JLabel("login:"));
+            addUserFrame.getContentPane().add(newLogin);
+            addUserFrame.getContentPane().add(new JLabel("password:"));
+            addUserFrame.getContentPane().add(newPassword);
+            JButton saveButton = new JButton("Save");
+            addUserFrame.getContentPane().add(saveButton);
+            addUserFrame.setVisible(true);
+        }
+    }
 
 }
