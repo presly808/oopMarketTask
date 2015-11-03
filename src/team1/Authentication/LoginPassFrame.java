@@ -24,7 +24,7 @@ public class LoginPassFrame extends JFrame {
     public LoginPassFrame(MarketDB marketDB) throws HeadlessException {
         this.marketDB = marketDB;
         setTitle("login/pass");
-        setSize(350, 125);
+        setSize(500, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         init();
@@ -34,19 +34,38 @@ public class LoginPassFrame extends JFrame {
     void init(){
         login = new JTextField("");
         password = new JPasswordField("");
-        setLayout(new GridLayout(3, 2));
+        Font font = new Font(null, Font.BOLD, 18);
 
-        getContentPane().add(new JLabel("login:"));
-        getContentPane().add(login);
-        getContentPane().add(new JLabel("password:"));
-        getContentPane().add(password);
+        setLayout(new GridLayout(4, 1));
 
+        JPanel loginPanel = new JPanel(new GridLayout(1,2));
+        JLabel loginLabel = new JLabel("Login: ");
+        loginLabel.setFont(font);
+        loginPanel.add(loginLabel);
+        loginPanel.add(login);
+
+        JPanel passwordPanel = new JPanel(new GridLayout(1,2));
+        JLabel passLabel = new JLabel("Password: ");
+        passLabel.setFont(font);
+        passwordPanel.add(passLabel);
+        passwordPanel.add(password);
+
+
+        JPanel buttonPanel = new JPanel(new GridLayout(1,3));
         JButton okButton = new JButton("OK");
-        okButton.setMnemonic('O');
+        okButton.setFont(font);
+        buttonPanel.add(new JLabel(""));
+        buttonPanel.add(okButton);
+        buttonPanel.add(new JLabel(""));
         okButton.setToolTipText("press after typing login and password");
         okButton.addActionListener(new MyActionListener());
-        getContentPane().add(okButton);
-        incorrectPass = new JLabel("",SwingConstants.CENTER);
+
+
+        getContentPane().add(loginPanel);
+        getContentPane().add(passwordPanel);
+        getContentPane().add(buttonPanel);
+
+        incorrectPass = new JLabel("", SwingConstants.CENTER);
         getContentPane().add(incorrectPass);
     }
 
@@ -67,7 +86,6 @@ public class LoginPassFrame extends JFrame {
                 password.setText("");
                 incorrectPass.setText("invalid login or password");
                 incorrectPass.setForeground(Color.red);
-
             }
         }
     }
