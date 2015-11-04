@@ -1,9 +1,10 @@
 package team1.controller;
 
-import team1.model.MarketDB;
-import team1.model.Product;
+import team1.model.*;
+
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class AdminController implements IAdminController {
@@ -30,6 +31,20 @@ public class AdminController implements IAdminController {
     @Override
     public ArrayList<Product> getAll() {
         return marketDB.getProducts();
+    }
+
+    @Override
+    public ArrayList<User> getAllUsers() {
+        ArrayList users = new ArrayList();
+        ArrayList admins = marketDB.getAdmins();
+        ArrayList sellers = marketDB.getSellers();
+
+   //System.arraycopy(admins, 0, users, 0, admins.size());
+   //System.arraycopy(sellers, 0, users, admins.size(), sellers.size());
+//
+       //return users;
+
+       return  admins;
     }
 
     @Override

@@ -31,10 +31,11 @@ public class AdminViewFrame extends JFrame{
         setSize(600, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        init();
-        setVisible(true);
         this.marketDB = marketDB;
         adminController = new AdminController(marketDB);
+        init();
+        setVisible(true);
+
     }
 
     void init(){
@@ -42,37 +43,61 @@ public class AdminViewFrame extends JFrame{
         JPanel contentProducts = new JPanel();
         JPanel contentUsers = new JPanel();
 
-        contentProducts.setLayout(new GridLayout(6, 1));
+        contentProducts.setLayout(new GridLayout(2, 1));
+
+        DefaultListModel productListModel = new DefaultListModel();
+        JList productList = new JList(productListModel);
+        ArrayList productsArrayList = adminController.getAll();
+        for (Object obj: productsArrayList){
+            productListModel.addElement(obj);
+        }
+        contentProducts.add(productList);
+        contentProducts.add(new JScrollPane(productList), BorderLayout.CENTER);
+
+        contentUsers.setLayout(new GridLayout(2, 1));
+
+        DefaultListModel userListModel = new DefaultListModel();
+        JList userList = new JList(userListModel);
+        ArrayList usersArrayList = adminController.getAllUsers();
+        for (Object obj: usersArrayList){
+            userListModel.addElement(obj);
+        }
+        contentUsers.add(userList);
+        contentUsers.add(new JScrollPane(userList), BorderLayout.CENTER);
+
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new GridLayout(1, 2, 5, 0));
+        contentProducts.add(buttonsPanel, BorderLayout.SOUTH);
 
         JButton showButton = new JButton("Show All");
         showButton.setMnemonic('S');
         showButton.setToolTipText("press to show all products");
         showButton.addActionListener(new showActionListener());
-        contentProducts.add(showButton);
+        buttonsPanel.add(showButton);
 
         JButton addButton = new JButton("Add");
         addButton.setMnemonic('A');
         addButton.setToolTipText("press to add new product");
         addButton.addActionListener(new addActionListener());
-        contentProducts.add(addButton);
+        buttonsPanel.add(addButton);
 
         JButton renameButton = new JButton("Rename");
         renameButton.setMnemonic('R');
         renameButton.setToolTipText("press to rename exist product");
         renameButton.addActionListener(new renameActionListener());
-        contentProducts.add(renameButton);
+        buttonsPanel.add(renameButton);
 
         JButton deleteButton = new JButton("Delete");
         deleteButton.setMnemonic('D');
         deleteButton.setToolTipText("press to delete product");
         deleteButton.addActionListener(new deleteActionListener());
-        contentProducts.add(deleteButton);
+        buttonsPanel.add(deleteButton);
 
         JButton findButton = new JButton("Find");
         findButton.setMnemonic('F');
         findButton.setToolTipText("press to find product");
         findButton.addActionListener(new findActionListener());
-        contentProducts.add(findButton);
+        buttonsPanel.add(findButton);
 
         contentUsers.setLayout(new GridLayout(1, 1));
 
