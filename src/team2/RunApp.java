@@ -2,21 +2,25 @@ package team2;
 
 
 import team2.controller.AdminController;
+import team2.controller.StartViewController;
 import team2.model.Admin;
+import team2.model.Guest;
 import team2.model.MarketDB;
+import team2.model.User;
 import team2.view.AdminView;
 import team2.controller.IAdminController;
+import team2.view.StartView;
 
 public class RunApp {
 
     public static void main(String[] args) {
-        Admin admin = new Admin(343, "Kolia","1234");
+        User user = new Guest(0,"guest","guest");
 
         MarketDB marketDB = new MarketDB();
-        IAdminController iAdminController = new AdminController(marketDB);
-        AdminView adminView = new AdminView(admin, iAdminController);
+        StartViewController startViewController = new StartViewController(marketDB);
+        StartView StartView = new StartView(user, startViewController);
 
-        adminView.startMenu();
+        StartView.startMenu();
 
     }
 }
