@@ -52,4 +52,23 @@ public class User implements Serializable{
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (!login.equals(user.login)) return false;
+        return pass.equals(user.pass);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = login.hashCode();
+        result = 31 * result + pass.hashCode();
+        return result;
+    }
 }

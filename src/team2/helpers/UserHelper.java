@@ -1,5 +1,8 @@
 package team2.helpers;
 
+import team2.model.Admin;
+import team2.model.Guest;
+import team2.model.Seller;
 import team2.model.User;
 import team2.helpers.IOHelper;
 
@@ -10,7 +13,7 @@ import java.util.ArrayList;
  * Created by Dima on 01.11.2015.
  */
 public class UserHelper {
-    public static String usedDBFilePath = "C:\\!J\\ArtCode\\ACO8\\src\\market\\users.db!";
+    public static String usedDBFilePath = "C:\\users.db!";
 
     public static ArrayList<User> loadUsersDB() {
         ArrayList<User> usersDB;
@@ -35,19 +38,21 @@ public class UserHelper {
         return null;//new UserGuest();
     }
 
-/*
-    public static void main(String[] args) {
+
+    public static void makeDefaultUserDB() {
         ArrayList<User> testUserDB = new ArrayList<>();
 
-        testUserDB.add( new Admin(0,"guest","guest"));
+        testUserDB.add( new Guest(0,"guest","guest"));
         testUserDB.add( new Admin(1,"admin","admin"));
+        testUserDB.add( new Seller(2,"cashmen","cashmen"));
         saveUsersDB(testUserDB);
 
         testUserDB = loadUsersDB();
 
         System.out.println(testUserDB.get(0).toString());
         System.out.println(testUserDB.get(1).toString());
+        System.out.println(testUserDB.get(2).toString());
     }
-*/
+
 }
 

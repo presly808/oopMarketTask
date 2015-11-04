@@ -2,14 +2,11 @@ package team2.controller;
 
 import team2.model.MarketDB;
 import team2.model.Product;
-
 import java.util.ArrayList;
-
 
 public class AdminController implements IAdminController {
 
     private MarketDB marketDB;
-
     public AdminController(MarketDB marketDB) {
         this.marketDB = marketDB;
     }

@@ -1,5 +1,7 @@
 package team2.model;
 
+import team2.helpers.UserHelper;
+
 import java.util.ArrayList;
 
 /**
@@ -16,7 +18,7 @@ public class MarketDB {
     private double amountMoney;
 
     public MarketDB() {
-        //this.users =
+        this.users = UserHelper.loadUsersDB();
     }
 
     public ArrayList<Product> getProducts() {
@@ -57,5 +59,14 @@ public class MarketDB {
 
     public void setAmountMoney(double amountMoney) {
         this.amountMoney = amountMoney;
+    }
+
+    public User isUserValid(User user){
+        for (int i = 0; i < users.size(); i++) {
+            if ( users.get(i).equals(user) ) {
+                return users.get(i);
+            }
+        }
+        return users.get(0); /// пусть нулевой пользователь всегда гость
     }
 }
