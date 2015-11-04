@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Created by Dima on 01.11.2015.
  */
 public class UserHelper {
-    public static String usedDBFilePath = "D:\\oopMarketTask\\src\\team2\\users.db!";
+    public static String usedDBFilePath = "C:\\users.db!";
 
     public static ArrayList<User> loadUsersDB() {
         ArrayList<User> usersDB;
@@ -37,7 +37,7 @@ public class UserHelper {
 
         return null;//new UserGuest();
     }
-/*
+
 
     public static void main(String[] args) {
         ArrayList<User> testUserDB = new ArrayList<>();
@@ -53,6 +53,6 @@ public class UserHelper {
         System.out.println(testUserDB.get(1).toString());
         System.out.println(testUserDB.get(2).toString());
     }
-*/
+
 }
 
