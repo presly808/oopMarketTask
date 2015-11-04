@@ -27,7 +27,7 @@ public class AdminViewFrame extends JFrame{
 
     public AdminViewFrame(MarketDB marketDB)  //marketDB - временный параметр для теста
     {
-        setTitle("login/pass");
+        setTitle("Admin view");
         setSize(600, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -39,43 +39,59 @@ public class AdminViewFrame extends JFrame{
 
     void init(){
 
-        setLayout(new GridLayout(6, 1));
+        JPanel contentProducts = new JPanel();
+        JPanel contentUsers = new JPanel();
+
+        contentProducts.setLayout(new GridLayout(6, 1));
 
         JButton showButton = new JButton("Show All");
         showButton.setMnemonic('S');
         showButton.setToolTipText("press to show all products");
         showButton.addActionListener(new showActionListener());
-        getContentPane().add(showButton);
+        contentProducts.add(showButton);
 
         JButton addButton = new JButton("Add");
         addButton.setMnemonic('A');
         addButton.setToolTipText("press to add new product");
         addButton.addActionListener(new addActionListener());
-        getContentPane().add(addButton);
+        contentProducts.add(addButton);
 
         JButton renameButton = new JButton("Rename");
         renameButton.setMnemonic('R');
         renameButton.setToolTipText("press to rename exist product");
         renameButton.addActionListener(new renameActionListener());
-        getContentPane().add(renameButton);
+        contentProducts.add(renameButton);
 
         JButton deleteButton = new JButton("Delete");
         deleteButton.setMnemonic('D');
         deleteButton.setToolTipText("press to delete product");
         deleteButton.addActionListener(new deleteActionListener());
-        getContentPane().add(deleteButton);
+        contentProducts.add(deleteButton);
 
         JButton findButton = new JButton("Find");
         findButton.setMnemonic('F');
         findButton.setToolTipText("press to find product");
         findButton.addActionListener(new findActionListener());
-        getContentPane().add(findButton);
+        contentProducts.add(findButton);
+
+        contentUsers.setLayout(new GridLayout(1, 1));
 
         JButton addUserButton = new JButton("Add User");
         addUserButton.setMnemonic('U');
         addUserButton.setToolTipText("press to add user");
         addUserButton.addActionListener(new addUserActionListener());
-        getContentPane().add(addUserButton);
+        contentUsers.add(addUserButton);
+
+        JTabbedPane tabbedPane = new JTabbedPane();
+
+        tabbedPane.addTab("Products ", contentProducts);
+        tabbedPane.addTab("Users ", contentUsers);
+
+        JPanel content = new JPanel();
+        content.setLayout(new BorderLayout());
+        content.add(tabbedPane, BorderLayout.CENTER);
+        getContentPane().add(content);
+
     }
 
     private class showActionListener implements ActionListener {

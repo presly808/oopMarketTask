@@ -26,9 +26,10 @@ public class RunApp {
 
         MarketDB marketDB = new MarketDB();
         StartViewController startViewController = new StartViewController(marketDB);
-        StartView StartView = new StartView(user, startViewController);
+        StartView startView = new StartView(user, startViewController);
 
-        StartView.startMenu();
+        startView.startMenu();
+        // tODO перенести вызов  менюшки в контроллер, менять юзера системы при успешном логине, вызывать следующие менюхи.
     }
 
 }

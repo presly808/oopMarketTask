@@ -22,6 +22,7 @@ public class StartViewController {
              return userWhoTryToEnter;
          } else {
              System.out.println( "valid user" );
+
              return null;
              // check instance of user admin or seller and route
          }
