@@ -14,15 +14,16 @@ import java.awt.event.ActionListener;
  */
 public class StartView extends JFrame {
     private User user;
+    private StartViewController svc;
     private JTextField login;
     private JTextField password;
 
     public StartView(User user, StartViewController startViewController) {
         this.user = user;
+        this.svc = startViewController;
     }
 
     public void startMenu() {
-        System.out.println(this.user.toString());
 
         setTitle("How are you?");
         setSize(400, 200);
@@ -64,7 +65,13 @@ public class StartView extends JFrame {
         public void actionPerformed(ActionEvent e) {
             String loginText = login.getText();
             String passwordText = password.getText();
-            System.out.println("LOGIN Button is pressed!!!" + loginText + " " + passwordText);
+            svc.checkLoginPassw(loginText, passwordText);
+
+            JLabel logAgain = new JLabel("Login or password is incorrect. try again or go out!");
+            getContentPane().add(logAgain);
+
+            System.out.println("login checked");
+
         }
     }
 

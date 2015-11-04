@@ -60,4 +60,13 @@ public class MarketDB {
     public void setAmountMoney(double amountMoney) {
         this.amountMoney = amountMoney;
     }
+
+    public User isUserValid(User user){
+        for (int i = 0; i < users.size(); i++) {
+            if ( users.get(i).equals(user) ) {
+                return users.get(i);
+            }
+        }
+        return users.get(0); /// пусть нулевой пользователь всегда гость
+    }
 }
