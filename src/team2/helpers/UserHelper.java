@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Created by Dima on 01.11.2015.
  */
 public class UserHelper {
-    public static String usedDBFilePath = "C:\\!J\\ArtCode\\ACO8\\src\\market\\users.db!";
+    public static String usedDBFilePath = "D:\\oopMarketTask\\src\\team2\\users.db!";
 
     public static ArrayList<User> loadUsersDB() {
         ArrayList<User> usersDB;

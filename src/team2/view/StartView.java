@@ -25,6 +25,7 @@ public class StartView extends JFrame {
         setTitle("How are you?");
         setSize(400, 200);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        buttons();
         login = new JTextField("");
         password = new JTextField("");
 
@@ -35,6 +36,13 @@ public class StartView extends JFrame {
         setVisible(true);
     }
 
+    public void buttons() {
+        JPanel southButtonsPanel = new JPanel(new GridLayout(1, 2));
+        JButton loginButton = new JButton("Login");
+        JButton exitButton = new JButton("Exit");
+        southButtonsPanel.add(loginButton);
+        southButtonsPanel.add(exitButton);
+    }
 }
 
 

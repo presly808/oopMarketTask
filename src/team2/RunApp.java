@@ -11,16 +11,19 @@ import team2.view.AdminView;
 import team2.controller.IAdminController;
 import team2.view.StartView;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class RunApp {
 
     public static void main(String[] args) {
-        User user = new Guest(0,"guest","guest");
+        User user = new Guest(0, "guest", "guest");
 
         MarketDB marketDB = new MarketDB();
         StartViewController startViewController = new StartViewController(marketDB);
         StartView StartView = new StartView(user, startViewController);
 
         StartView.startMenu();
-
     }
+
 }
