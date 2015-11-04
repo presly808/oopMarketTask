@@ -126,6 +126,7 @@ public class AdminViewFrame extends JFrame{
             JFrame showJFrame = new JFrame();
             showJFrame.setTitle("Show all products");
             showJFrame.setSize(600, 200);
+            showJFrame.setLocationRelativeTo(null);
             showJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
             //AdminController adminController = new AdminController(marketDB);
@@ -156,6 +157,7 @@ public class AdminViewFrame extends JFrame{
 
             addJFrame.setTitle("Add new product");
             addJFrame.setSize(600, 200);
+            addJFrame.setLocationRelativeTo(null);
             addJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
             addJFrame.setLayout(new GridLayout(4, 2));
