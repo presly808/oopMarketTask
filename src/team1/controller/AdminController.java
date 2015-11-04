@@ -38,13 +38,15 @@ public class AdminController implements IAdminController {
         ArrayList users = new ArrayList();
         ArrayList admins = marketDB.getAdmins();
         ArrayList sellers = marketDB.getSellers();
+        users.addAll(admins);
+        users.addAll(sellers);
 
    //System.arraycopy(admins, 0, users, 0, admins.size());
    //System.arraycopy(sellers, 0, users, admins.size(), sellers.size());
 //
-       //return users;
+       return users;
 
-       return  admins;
+       //return  admins;
     }
 
     @Override
