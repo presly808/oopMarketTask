@@ -3,6 +3,7 @@ package team2;
 
 import team2.controller.AdminController;
 import team2.controller.StartViewController;
+import team2.helpers.UserHelper;
 import team2.model.Admin;
 import team2.model.Guest;
 import team2.model.MarketDB;
@@ -17,6 +18,10 @@ import java.awt.*;
 public class RunApp {
 
     public static void main(String[] args) {
+
+        // RUN ONLY FIRST TIME!!!! AND COMMENT!!!!
+        //UserHelper.makeDefaultUserDB();
+
         User user = new Guest(0, "guest", "guest");
 
         MarketDB marketDB = new MarketDB();

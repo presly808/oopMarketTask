@@ -39,7 +39,7 @@ public class UserHelper {
     }
 
 
-    public static void main(String[] args) {
+    public static void makeDefaultUserDB() {
         ArrayList<User> testUserDB = new ArrayList<>();
 
         testUserDB.add( new Guest(0,"guest","guest"));

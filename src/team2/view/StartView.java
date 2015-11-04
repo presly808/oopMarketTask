@@ -6,6 +6,8 @@ import team2.model.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Dima on 04.11.2015.
@@ -46,12 +48,24 @@ public class StartView extends JFrame {
         getContentPane().add(password);
 
         JButton loginButton = new JButton("Login");
+        loginButton.addActionListener(new LoginListener());
         JButton exitButton = new JButton("Exit");
+        //exitButton //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         getContentPane().add(loginButton);
         getContentPane().add(exitButton);
 
         setVisible(true);
+    }
+
+    private class LoginListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String loginText = login.getText();
+            String passwordText = password.getText();
+            System.out.println("LOGIN Button is pressed!!!" + loginText + " " + passwordText);
+        }
     }
 
 }
