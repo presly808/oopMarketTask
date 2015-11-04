@@ -59,18 +59,29 @@ public class StartView extends JFrame {
         setVisible(true);
     }
 
-    private class LoginListener implements ActionListener {
+    private StartView getOuter() {
+        return StartView.this;
+    }
+
+    private class LoginListener extends Component implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             String loginText = login.getText();
             String passwordText = password.getText();
-            svc.checkLoginPassw(loginText, passwordText);
-
-            JLabel logAgain = new JLabel("Login or password is incorrect. try again or go out!");
-            getContentPane().add(logAgain);
-
-            System.out.println("login checked");
+            if ( user.equals( svc.checkLoginPassw(loginText, passwordText) ) ) { // guest
+                JLabel logAgain = new JLabel("Login or password is incorrect. try again or go out!");
+                getContentPane().add(logAgain);
+                JOptionPane.showMessageDialog(this,
+                        "Login or password is incorrect. try again or go out!",
+                        "Inane error",
+                        JOptionPane.ERROR_MESSAGE);
+                login.setText("");
+                password.setText("");
+            } else { // user not gest. login successful
+                getOuter().dispose(); // close login window
+                return;
+            }
 
         }
     }

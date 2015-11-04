@@ -1,14 +1,17 @@
 package team2.model;
 
+import java.util.ArrayList;
+import javax.swing.*;
+import java.awt.*;
 /**
  * Created by serhii on 25.10.15.
  */
 public class Product {
 
-
     private String barCode;
     private String model;
     private double price;
+    private ArrayList<Product> productsList;
 
     public Product() {
     }
@@ -60,8 +63,7 @@ public class Product {
 
         Product product = (Product) o;
 
-        return !(barCode != null ? !barCode.equals(product.barCode) : product.barCode != null);
+        return !( (barCode != null) ? (!barCode.equals(product.barCode)) : (product.barCode != null) );
 
     }
-
 }
