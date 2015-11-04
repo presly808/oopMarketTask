@@ -25,24 +25,35 @@ public class StartView extends JFrame {
         setTitle("How are you?");
         setSize(400, 200);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        buttons();
+
+        JLabel loggedUserTxt = new JLabel("Now logged in: ");
+        JLabel loggedUser = new JLabel(this.user.toString());
+        JLabel pleaseLogin = new JLabel("Please, input login: ");
+        JLabel pleasePassw = new JLabel("Please, input password: ");
+
         login = new JTextField("");
         password = new JTextField("");
 
-        //setLayout(new GridLayout(2,2));
+        setLayout(new GridLayout(4,2));
+
+        getContentPane().add(loggedUserTxt);
+        getContentPane().add(loggedUser);
+
+        getContentPane().add(pleaseLogin);
         getContentPane().add(login);
+
+        getContentPane().add(pleasePassw);
         getContentPane().add(password);
+
+        JButton loginButton = new JButton("Login");
+        JButton exitButton = new JButton("Exit");
+
+        getContentPane().add(loginButton);
+        getContentPane().add(exitButton);
 
         setVisible(true);
     }
 
-    public void buttons() {
-        JPanel southButtonsPanel = new JPanel(new GridLayout(1, 2));
-        JButton loginButton = new JButton("Login");
-        JButton exitButton = new JButton("Exit");
-        southButtonsPanel.add(loginButton);
-        southButtonsPanel.add(exitButton);
-    }
 }
 
 
