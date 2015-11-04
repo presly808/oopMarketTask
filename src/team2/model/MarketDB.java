@@ -1,5 +1,7 @@
 package team2.model;
 
+import team2.helpers.UserHelper;
+
 import java.util.ArrayList;
 
 /**
@@ -16,7 +18,7 @@ public class MarketDB {
     private double amountMoney;
 
     public MarketDB() {
-        //this.users =
+        this.users = UserHelper.loadUsersDB();
     }
 
     public ArrayList<Product> getProducts() {
