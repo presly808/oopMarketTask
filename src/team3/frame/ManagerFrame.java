@@ -1,8 +1,7 @@
 package team3.frame;
 
-import team3.controller.IAdminController;
+import com.sun.deploy.panel.JSmartTextArea;
 import team3.controller.IManagerController;
-import team3.model.Admin;
 import team3.model.Manager;
 
 import javax.swing.*;
@@ -39,7 +38,7 @@ public class ManagerFrame extends JFrame {
 
     private void init() {
 
-        JPanel northListsPanel = new JPanel(new GridLayout(2,2));
+        JPanel northListsPanel = new JPanel(new GridLayout(1,2));
 
         northListsPanel.add(new JLabel("Admins:"));
         northListsPanel.add(new JLabel("Sellers:"));
@@ -52,8 +51,12 @@ public class ManagerFrame extends JFrame {
         sellersListArea.setEditable(false);
         JScrollPane scrollPaneSellers = new JScrollPane(sellersListArea);
 
-        northListsPanel.add(scrollPaneAdmins);
-        northListsPanel.add(scrollPaneSellers);
+
+        JSplitPane paneWithLists = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        paneWithLists.setAutoscrolls(true);
+        paneWithLists.setDividerLocation((int) this.getSize().getWidth() / 2);
+        paneWithLists.add(adminsListArea);
+        paneWithLists.add(sellersListArea);
 
 
         JPanel southButtonsPanel = new JPanel(new GridLayout(1,3));
@@ -72,6 +75,7 @@ public class ManagerFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                new DeleteUserFrame();
 
             }
         });
@@ -90,7 +94,7 @@ public class ManagerFrame extends JFrame {
         southButtonsPanel.add(eraseButton);
         southButtonsPanel.add(signOutButton);
 
-
+        getContentPane().add(paneWithLists);
         getContentPane().add(northListsPanel, BorderLayout.NORTH);
         getContentPane().add(southButtonsPanel, BorderLayout.SOUTH);
 
@@ -105,9 +109,59 @@ public class ManagerFrame extends JFrame {
     }
 
 
+    private class DeleteUserFrame extends JFrame {
+
+        public DeleteUserFrame(){
+            setLocationRelativeTo(ManagerFrame.this);
+            setSize(250,100);
+            setTitle("User deleting");
+            init();
+            setVisible(true);
+            setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        }
+
+        private void init () {
+
+            JLabel idLog = new JLabel("ID: ");
+
+            JTextField idInput = new JTextField();
+
+            JButton deleteUser = new JButton("Fire");
+            deleteUser.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    try {
+                        int idInt = Integer.valueOf(idInput.getText());
+                        boolean deleted = iManagerController.deleteUser(idInt);
+
+                        if (deleted) {
+                            JOptionPane.showConfirmDialog(ManagerFrame.this, "User's account has been deleted.", "SUCCESS", JOptionPane.DEFAULT_OPTION);
+                            refreshInfo();
+                        } else if (!deleted) {
+                            JOptionPane.showMessageDialog(ManagerFrame.this, "This user (ID) doesn't exist in market database.", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                        }
 
 
+                    } catch (NumberFormatException e1) {
+
+                        JOptionPane.showMessageDialog(ManagerFrame.this, "Cannot convert ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                }
+            });
+
+            JPanel northInputPanel = new JPanel(new GridLayout(1,2));
+
+            northInputPanel.add(idLog);
+            northInputPanel.add(idInput);
+
+            getContentPane().add(northInputPanel, BorderLayout.NORTH);
+            getContentPane().add(deleteUser, BorderLayout.SOUTH);
 
 
-
+        }
+    }
 }
