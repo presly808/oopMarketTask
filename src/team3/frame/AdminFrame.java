@@ -4,6 +4,7 @@ import org.omg.IOP.ExceptionDetailMessage;
 import team3.controller.IAdminController;
 import team3.model.Admin;
 import team3.model.MarketDB;
+import team3.model.Product;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -25,8 +26,9 @@ public class AdminFrame extends JFrame {
         this.user = user;
         this.iAdminController = iAdminController;
 
-        setSize(800, 800);
-        setTitle("Admin menu");
+        setLocationRelativeTo(null);
+        setSize(500, 500);
+        setTitle(String.format("Admin: %s",user.getLogin()));
         init();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
@@ -38,7 +40,10 @@ public class AdminFrame extends JFrame {
 
         JLabel listTitle = new JLabel("Product list:");
 
-        JPanel marketProductsListArea = new JPanel();
+        JTextArea marketProductsListArea = new JTextArea(iAdminController.getAllProductsString());
+        marketProductsListArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(marketProductsListArea);
+
 
         JButton addButton = new JButton("Add");
         addButton.addActionListener(new ActionListener() {
@@ -65,6 +70,8 @@ public class AdminFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                new FindProductFrame();
+
             }
         });
 
@@ -72,6 +79,7 @@ public class AdminFrame extends JFrame {
         signOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
 
             }
         });
@@ -87,7 +95,7 @@ public class AdminFrame extends JFrame {
         southButtonsPanel.add(signOutButton);
 
         getContentPane().add(listTitle, BorderLayout.NORTH);
-        getContentPane().add(marketProductsListArea, BorderLayout.CENTER);
+        getContentPane().add(scrollPane, BorderLayout.CENTER);
         getContentPane().add(southButtonsPanel, BorderLayout.SOUTH);
 
 
@@ -108,8 +116,9 @@ public class AdminFrame extends JFrame {
 
         public AddProductFrame(){
 
-            setSize(250,175);
-            setTitle("Add product");
+            setLocationRelativeTo(AdminFrame.this);
+            setSize(250,150);
+            setTitle("Product adding");
             init();
             setVisible(true);
             setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
@@ -126,7 +135,7 @@ public class AdminFrame extends JFrame {
             JTextField model = new JTextField();
             JTextField price = new JTextField();
 
-            JButton addProductButton = new JButton("Product adding");
+            JButton addProductButton = new JButton("Add");
             addProductButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -170,10 +179,14 @@ public class AdminFrame extends JFrame {
 
     }
 
+
+
+
     private class EraseProductFrame extends JFrame{
 
         public EraseProductFrame() {
 
+            setLocationRelativeTo(AdminFrame.this);
             setSize(250,100);
             setTitle("Product erasing");
             init();
@@ -214,5 +227,57 @@ public class AdminFrame extends JFrame {
 
 
         }
+    }
+
+    private class FindProductFrame extends JFrame{
+
+
+        public FindProductFrame() {
+
+            setLocationRelativeTo(AdminFrame.this);
+            setSize(250,100);
+            setTitle("Product finding");
+            init();
+            setVisible(true);
+            setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        }
+
+        private void init() {
+
+
+            JLabel barCodeLog = new JLabel("Barcode: ");
+
+            JTextField barCode = new JTextField();
+
+            JButton findProductButton = new JButton("Find");
+            findProductButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    Product found = iAdminController.findProductByCode(barCode.getText());
+
+                    if (found == null){
+                        JOptionPane.showMessageDialog(AdminFrame.this, "This product (barcode) doesn't exist in market database.", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                    } else {
+                        JOptionPane.showConfirmDialog(AdminFrame.this, found.toString(), "SUCCESS", JOptionPane.DEFAULT_OPTION);
+
+                    }
+                }
+            });
+
+            JPanel northInputPanel = new JPanel(new GridLayout(1,2));
+
+            northInputPanel.add(barCodeLog);
+            northInputPanel.add(barCode);
+
+            getContentPane().add(northInputPanel, BorderLayout.NORTH);
+            getContentPane().add(findProductButton, BorderLayout.SOUTH);
+
+
+        }
+
+
     }
 }

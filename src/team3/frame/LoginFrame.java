@@ -1,10 +1,7 @@
 package team3.frame;
 
 import team1.model.*;
-import team3.controller.AdminController;
-import team3.controller.IAdminController;
-import team3.controller.ISellerController;
-import team3.controller.SellerController;
+import team3.controller.*;
 import team3.model.*;
 import team3.model.Admin;
 import team3.model.MarketDB;
@@ -33,6 +30,7 @@ public class LoginFrame extends JFrame{
 
         this.marketDB = marketDB;
 
+        setLocationRelativeTo(null);
         setSize(250, 150);
         setTitle("Authorization");
         init();
@@ -74,6 +72,11 @@ public class LoginFrame extends JFrame{
                         Seller enteredAs = (Seller) marketDB.getUsers().get(index);
                         ISellerController iSellerController = new SellerController(marketDB);
                         new SellerFrame(enteredAs, iSellerController);
+                        dispose();
+                    } else if (marketDB.getUsers().get(index) instanceof Manager) {
+                        Manager enteredAs = (Manager) marketDB.getUsers().get(index);
+                        IManagerController iManagerController = new ManagerController(marketDB);
+                        new ManagerFrame(enteredAs, iManagerController);
                         dispose();
                     }
 

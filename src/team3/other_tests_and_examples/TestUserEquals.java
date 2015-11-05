@@ -15,8 +15,10 @@ public class TestUserEquals {
         User user0 = new Admin(346, "Ivan", "9856");
         User user1 = new Seller(346, "Ivan", "9856");
         User user2 = new User();
-        user2.setLogin("Ivan");
-        user2.setPass("9856");
+        user2.setLogin("Petr");
+        user2.setPass("8888");
+        User user3 = new Manager(348, "Petr", "8888");
+
 
         System.out.println(user0.equals(user1));
         System.out.println(user1.equals(user0));
@@ -26,20 +28,28 @@ public class TestUserEquals {
         System.out.println(user1.equals(user2));
         System.out.println(user2.equals(user1));
 
+        System.out.println(user3.equals(user0));
+        System.out.println(user3.equals(user1));
+        System.out.println(user3.equals(user2));
+        System.out.println(user2.equals(user3));
+
+
+
 
         ArrayList<User> users = new ArrayList<>();
 
 
+
+
         users.add(user0);
         users.add(user1);
-        users.add(user2);
-        users.add(new Admin(192, "Kolia", "3856"));
+        users.add(user3);
 
-        User userTemp = new User();
-        userTemp.setLogin("Kolia");
-        userTemp.setPass("3856");
+//        User userTemp = new User();
+//        userTemp.setLogin("Petr");
+//        userTemp.setPass("8888");
 
-        System.out.println(users.indexOf(userTemp));
+        System.out.println(users.indexOf(user2));
 //
 //        MarketDB marketDB = new MarketDB();
 //

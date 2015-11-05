@@ -27,6 +27,7 @@ public class SellerFrame extends JFrame {
         this.iSellerController = iSellerController;
 
         setSize(600,1000);
+        setTitle(String.format("Seller: %s",user.getLogin()));
         init();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);

@@ -12,11 +12,17 @@ public class User {
     public User() {
     }
 
+    public User(String pass, String login) {
+        this.pass = pass;
+        this.login = login;
+    }
+
     public User(int id,String login, String pass) {
         this.id = id;
         this.login = login;
         this.pass = pass;
     }
+
 
     public int getId() {
         return id;
@@ -55,11 +61,15 @@ public class User {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null) return false;
-        if (obj.getClass() != User.class && obj.getClass() != Admin.class  && obj.getClass() != Seller.class)
+        if (obj.getClass() != User.class && obj.getClass() != Admin.class  && obj.getClass() != Seller.class && obj.getClass() != Manager.class)
             return false;
 
         if ((getClass() == Admin.class && obj.getClass() == Seller.class) ||
-                (getClass() == Seller.class && obj.getClass() == Admin.class))
+                (getClass() == Admin.class && obj.getClass() == Manager.class) ||
+                (getClass() == Seller.class && obj.getClass() == Admin.class) ||
+                (getClass() == Seller.class && obj.getClass() == Manager.class) ||
+                (getClass() == Manager.class && obj.getClass() == Admin.class) ||
+                (getClass() == Manager.class && obj.getClass() == Seller.class))
             return false;
 
 

@@ -38,6 +38,16 @@ public class AdminController implements IAdminController {
     }
 
     @Override
+    public String getAllProductsString() {
+        String list = "";
+        for (Product product : getAll()){
+            list += product.toString() + "\n";
+        }
+        return list;
+    }
+
+
+    @Override
     public Product findProductByName(String name) {
         return null;
     }
@@ -48,6 +58,10 @@ public class AdminController implements IAdminController {
         tempProductForFind.setBarCode(barCode);
         int index = marketDB.getProducts().indexOf(tempProductForFind);
 
-        return marketDB.getProducts().get(index);
+        if (index != -1){
+            return marketDB.getProducts().get(index);
+        }
+        return null;
+
     }
 }

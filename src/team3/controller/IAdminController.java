@@ -12,6 +12,7 @@ public interface IAdminController {
     boolean addProduct(String barCode, String model, double price);
     boolean deleteProduct(String barCode);
     ArrayList<Product> getAll();
+    String getAllProductsString();
     Product findProductByName(String name);
     Product findProductByCode(String barCode);
 

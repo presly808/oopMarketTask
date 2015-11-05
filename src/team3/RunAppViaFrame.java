@@ -30,6 +30,7 @@ public class RunAppViaFrame {
         ArrayList<User> users = new ArrayList<>();
         users.add(new Admin(343, "Kolia", "1234"));
         users.add(new Seller(346, "Ivan", "9856"));
+        users.add(new Manager(348, "Petr", "8888"));
 
         marketDB.setUsers(users);
 
