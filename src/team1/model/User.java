@@ -50,6 +50,7 @@ public class User {
         if (this instanceof Admin){ sb.append(", admin");}
         else {sb.append(", seller");}
         sb.append('}');
+
         return sb.toString();
     }
 }
