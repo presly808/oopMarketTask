@@ -52,6 +52,8 @@ public class AdminFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                new  EraseProductFrame();
+
             }
         });
 
@@ -92,6 +94,13 @@ public class AdminFrame extends JFrame {
 
     }
 
+
+
+
+
+
+
+
     private class AddProductFrame extends JFrame{
 
         public AddProductFrame(){
@@ -114,7 +123,7 @@ public class AdminFrame extends JFrame {
             JTextField model = new JTextField();
             JTextField price = new JTextField();
 
-            JButton addProductButton = new JButton("Add");
+            JButton addProductButton = new JButton("Product adding");
             addProductButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -124,7 +133,7 @@ public class AdminFrame extends JFrame {
                         boolean added = iAdminController.addProduct(barCode.getText(), model.getText(), Double.parseDouble(price.getText()));
 
                         if (added){
-                            JOptionPane.showConfirmDialog(AdminFrame.this,"Product has been successfully added.","SUCCESS",JOptionPane.DEFAULT_OPTION);
+                            JOptionPane.showConfirmDialog(AdminFrame.this, "Product has been successfully added.", "SUCCESS", JOptionPane.DEFAULT_OPTION);
                         } else  if (!added){
                             JOptionPane.showMessageDialog(AdminFrame.this, "This product (barcode) already exists in market database.", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
@@ -156,5 +165,51 @@ public class AdminFrame extends JFrame {
         }
 
 
+    }
+
+    private class EraseProductFrame extends JFrame{
+
+        public EraseProductFrame() {
+
+            setSize(250,100);
+            setTitle("Product erasing");
+            init();
+            setVisible(true);
+            setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        }
+
+        private void init(){
+
+            JLabel barCodeLog = new JLabel("Barcode: ");
+
+            JTextField barCode = new JTextField();
+
+            JButton eraseProductButton = new JButton("Erase");
+            eraseProductButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    boolean erased = iAdminController.deleteProduct(barCode.getText());
+
+                    if (erased) {
+                        JOptionPane.showConfirmDialog(AdminFrame.this, "Product has been successfully deleted.", "SUCCESS", JOptionPane.DEFAULT_OPTION);
+                    } else if (!erased) {
+                        JOptionPane.showMessageDialog(AdminFrame.this, "This product (barcode) doesn't exist in market database.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                }
+            });
+
+            JPanel northInputPanel = new JPanel(new GridLayout(1,2));
+
+            northInputPanel.add(barCodeLog);
+            northInputPanel.add(barCode);
+
+            getContentPane().add(northInputPanel, BorderLayout.NORTH);
+            getContentPane().add(eraseProductButton, BorderLayout.SOUTH);
+
+
+        }
     }
 }
