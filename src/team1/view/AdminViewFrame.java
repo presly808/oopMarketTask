@@ -254,10 +254,55 @@ public class AdminViewFrame extends JFrame{
 
     private class findActionListener implements ActionListener{
 
+        JFrame findJFrame = new JFrame();
+        JTextField barCode = new JTextField("");
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Button Find is pressed");
-        }
+
+            findJFrame.getContentPane().removeAll();
+            findJFrame.setTitle("Find product");
+            findJFrame.setSize(600, 200);
+            findJFrame.setLocationRelativeTo(null);
+            findJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+            findJFrame.setLayout(new GridLayout(2, 2));
+
+            findJFrame.getContentPane().add(new JLabel("barcode:"));
+            findJFrame.getContentPane().add(barCode);
+
+            JButton addButton = new JButton("OK");
+            addButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Product product = adminController.findProductByCode(barCode.getText());
+                    if (product != null) {
+                        System.out.println("Such a product exist! - " + product);
+                        productList.setSelectedValue(product, true);}
+                    else {System.out.println("Such a product does not exist!");}
+
+                }
+            });
+
+            JButton cancelButton = new JButton("CANCEL");
+            cancelButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    findJFrame.setVisible(false);
+                }
+            });
+
+
+            JPanel buttonsPanel = new JPanel();
+            buttonsPanel.setLayout(new GridLayout(1, 2, 5, 0));
+            findJFrame.add(buttonsPanel, BorderLayout.SOUTH);
+
+            buttonsPanel.add(addButton);
+            buttonsPanel.add(cancelButton);
+
+            findJFrame.setVisible(true);
+
+          }
     }
 
     private class deleteActionListener implements ActionListener{

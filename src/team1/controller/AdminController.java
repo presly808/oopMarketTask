@@ -68,6 +68,7 @@ public class AdminController implements IAdminController {
         tempProductForFind.setBarCode(barCode);
         int index = marketDB.getProducts().indexOf(tempProductForFind);
 
-        return marketDB.getProducts().get(index);
+        if (index!= -1) {return marketDB.getProducts().get(index);}
+        else return null;
     }
 }
