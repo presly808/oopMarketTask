@@ -20,6 +20,13 @@ public class AdminFrame extends JFrame {
 
     private Admin user;
     private IAdminController iAdminController;
+    private JTextArea marketProductsListArea;
+    private JButton addButton;
+    private JScrollPane scrollPaneList;
+    private JButton eraseButton;
+    private JButton findButton;
+    private JButton signOutButton;
+    private JPanel southButtonsPanel;
 
     public AdminFrame (Admin user, IAdminController iAdminController){
 
@@ -40,12 +47,12 @@ public class AdminFrame extends JFrame {
 
         JLabel listTitle = new JLabel("Product list:");
 
-        JTextArea marketProductsListArea = new JTextArea(iAdminController.getAllProductsString());
+        marketProductsListArea = new JTextArea(iAdminController.getAllProductsString());
         marketProductsListArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(marketProductsListArea);
+        scrollPaneList = new JScrollPane(marketProductsListArea);
 
 
-        JButton addButton = new JButton("Add");
+        addButton = new JButton("Add");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,17 +62,17 @@ public class AdminFrame extends JFrame {
             }
         });
 
-        JButton eraseButton = new JButton("Erase");
+        eraseButton = new JButton("Erase");
         eraseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                new  EraseProductFrame();
+                new EraseProductFrame();
 
             }
         });
 
-        JButton findButton = new JButton("Find");
+        findButton = new JButton("Find");
         findButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -75,7 +82,8 @@ public class AdminFrame extends JFrame {
             }
         });
 
-        JButton signOutButton = new JButton("Sign out");
+
+        signOutButton = new JButton("Sign out");
         signOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,9 +93,7 @@ public class AdminFrame extends JFrame {
         });
 
 
-
-
-        JPanel southButtonsPanel = new JPanel(new GridLayout(1,4));
+        southButtonsPanel = new JPanel(new GridLayout(1,4));
 
         southButtonsPanel.add(addButton);
         southButtonsPanel.add(eraseButton);
@@ -95,14 +101,15 @@ public class AdminFrame extends JFrame {
         southButtonsPanel.add(signOutButton);
 
         getContentPane().add(listTitle, BorderLayout.NORTH);
-        getContentPane().add(scrollPane, BorderLayout.CENTER);
+        getContentPane().add(scrollPaneList, BorderLayout.CENTER);
         getContentPane().add(southButtonsPanel, BorderLayout.SOUTH);
 
+    }
 
 
+    private void refreshInfo() {
 
-
-
+        marketProductsListArea.setText(iAdminController.getAllProductsString());
     }
 
 
@@ -146,9 +153,12 @@ public class AdminFrame extends JFrame {
 
                         if (added){
                             JOptionPane.showConfirmDialog(AdminFrame.this, "Product has been successfully added.", "SUCCESS", JOptionPane.DEFAULT_OPTION);
+                            refreshInfo();
+
                         } else  if (!added){
                             JOptionPane.showMessageDialog(AdminFrame.this, "This product (barcode) already exists in market database.", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
+
 
                     } catch (NumberFormatException e1) {
                         JOptionPane.showMessageDialog(AdminFrame.this, "Cannot convert price", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -210,6 +220,8 @@ public class AdminFrame extends JFrame {
 
                     if (erased) {
                         JOptionPane.showConfirmDialog(AdminFrame.this, "Product has been successfully deleted.", "SUCCESS", JOptionPane.DEFAULT_OPTION);
+                        refreshInfo();
+
                     } else if (!erased) {
                         JOptionPane.showMessageDialog(AdminFrame.this, "This product (barcode) doesn't exist in market database.", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
@@ -228,6 +240,8 @@ public class AdminFrame extends JFrame {
 
         }
     }
+
+
 
     private class FindProductFrame extends JFrame{
 

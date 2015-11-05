@@ -17,6 +17,9 @@ public class ManagerFrame extends JFrame {
 
     private Manager user;
     private IManagerController iManagerController;
+    private JPanel northListsPanel;
+    private JTextArea adminsListArea;
+    private JTextArea sellersListArea;
 
 
     public ManagerFrame(Manager user, IManagerController iManagerController) {
@@ -41,11 +44,11 @@ public class ManagerFrame extends JFrame {
         northListsPanel.add(new JLabel("Admins:"));
         northListsPanel.add(new JLabel("Sellers:"));
 
-        JTextArea adminsListArea = new JTextArea(iManagerController.getAdminsString());
+        adminsListArea = new JTextArea(iManagerController.getAdminsString());
         adminsListArea.setEditable(false);
         JScrollPane scrollPaneAdmins = new JScrollPane(adminsListArea);
 
-        JTextArea sellersListArea = new JTextArea(iManagerController.getSellersString());
+        sellersListArea = new JTextArea(iManagerController.getSellersString());
         sellersListArea.setEditable(false);
         JScrollPane scrollPaneSellers = new JScrollPane(sellersListArea);
 
@@ -94,4 +97,17 @@ public class ManagerFrame extends JFrame {
 
 
     }
+
+    private void refreshInfo() {
+
+        adminsListArea.setText(iManagerController.getAdminsString());
+        sellersListArea.setText(iManagerController.getSellersString());
+    }
+
+
+
+
+
+
+
 }
