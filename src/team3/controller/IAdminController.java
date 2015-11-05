@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public interface IAdminController {
 
-    void addProduct(String barCode, String model, double price);
+    boolean addProduct(String barCode, String model, double price);
     boolean deleteProduct(String barCode);
     ArrayList<Product> getAll();
     Product findProductByName(String name);

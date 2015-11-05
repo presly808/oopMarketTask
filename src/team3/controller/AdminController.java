@@ -15,9 +15,14 @@ public class AdminController implements IAdminController {
     }
 
     @Override
-    public void addProduct(String barCode, String model, double price) {
+    public boolean addProduct(String barCode, String model, double price) {
         Product product = new Product(barCode, model, price);
-        marketDB.getProducts().add(product);
+        for (Product tempProduct : marketDB.getProducts()){
+            if (tempProduct.getBarCode().equals(product.getBarCode())){
+                return false;
+            }
+        }
+        return marketDB.getProducts().add(product);
     }
 
     @Override

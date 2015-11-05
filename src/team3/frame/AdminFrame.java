@@ -92,19 +92,19 @@ public class AdminFrame extends JFrame {
 
     }
 
-    private class AddProductFrame {
+    private class AddProductFrame extends JFrame{
 
         public AddProductFrame(){
 
-            setSize(250,250);
+            setSize(250,175);
             setTitle("Add product");
-            initAdd();
+            init();
             setVisible(true);
-            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
         }
 
-        private void initAdd() {
+        private void init() {
 
             JLabel barCodeLog = new JLabel("Barcode: ");
             JLabel modelLog = new JLabel("Model: ");
@@ -120,9 +120,16 @@ public class AdminFrame extends JFrame {
                 public void actionPerformed(ActionEvent e) {
 
                     try {
-                        iAdminController.addProduct(barCode.getText(), model.getText(), Double.parseDouble(price.getText()) );
 
-                    } catch (ClassCastException e1) {
+                        boolean added = iAdminController.addProduct(barCode.getText(), model.getText(), Double.parseDouble(price.getText()));
+
+                        if (added){
+                            JOptionPane.showConfirmDialog(AdminFrame.this,"Product has been successfully added.","SUCCESS",JOptionPane.DEFAULT_OPTION);
+                        } else  if (!added){
+                            JOptionPane.showMessageDialog(AdminFrame.this, "This product (barcode) already exists in market database.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } catch (NumberFormatException e1) {
                         JOptionPane.showMessageDialog(AdminFrame.this, "Cannot convert price", "ERROR", JOptionPane.ERROR_MESSAGE);
 
                     }
@@ -130,6 +137,20 @@ public class AdminFrame extends JFrame {
 
                 }
             });
+
+
+            JPanel northInputPanel = new JPanel(new GridLayout(3,2));
+
+            northInputPanel.add(barCodeLog);
+            northInputPanel.add(barCode);
+            northInputPanel.add(modelLog);
+            northInputPanel.add(model);
+            northInputPanel.add(priceLog);
+            northInputPanel.add(price);
+
+            getContentPane().add(northInputPanel, BorderLayout.NORTH);
+
+            getContentPane().add(addProductButton, BorderLayout.SOUTH);
 
 
         }
