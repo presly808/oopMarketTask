@@ -2,6 +2,7 @@ package team3.frame;
 
 import org.omg.IOP.ExceptionDetailMessage;
 import team3.controller.IAdminController;
+import team3.model.Admin;
 import team3.model.MarketDB;
 
 import javax.swing.*;
@@ -16,10 +17,12 @@ import java.awt.event.ActionListener;
  */
 public class AdminFrame extends JFrame {
 
-    IAdminController iAdminController;
+    private Admin user;
+    private IAdminController iAdminController;
 
-    public AdminFrame (IAdminController iAdminController){
+    public AdminFrame (Admin user, IAdminController iAdminController){
 
+        this.user = user;
         this.iAdminController = iAdminController;
 
         setSize(800, 800);

@@ -3,6 +3,7 @@ package team3.test_frame;
 import team3.frame.AdminFrame;
 
 import team3.controller.AdminController;
+import team3.model.Admin;
 import team3.model.MarketDB;
 
 /**
@@ -11,7 +12,7 @@ import team3.model.MarketDB;
 public class TestAdminFrame {
 
     public static void main(String[] args) {
-        new AdminFrame(new AdminController(new MarketDB()));
+        new AdminFrame(new Admin(), new AdminController(new MarketDB()));
     }
 
 }

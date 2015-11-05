@@ -65,13 +65,15 @@ public class LoginFrame extends JFrame{
                 if (index != -1 ) {
 
                     if (marketDB.getUsers().get(index) instanceof Admin) {
+                        Admin enteredAs = (Admin) marketDB.getUsers().get(index);
                         IAdminController iAdminController = new AdminController(marketDB);
-                        new AdminFrame(iAdminController);
+                        new AdminFrame(enteredAs, iAdminController);
                         dispose();
 
                     } else if (marketDB.getUsers().get(index) instanceof Seller) {
+                        Seller enteredAs = (Seller) marketDB.getUsers().get(index);
                         ISellerController iSellerController = new SellerController(marketDB);
-                        new SellerFrame(iSellerController);
+                        new SellerFrame(enteredAs, iSellerController);
                         dispose();
                     }
 
