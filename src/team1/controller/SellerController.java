@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 public class SellerController implements ISellerController{
-    private MarketDB marketDB;
+    public MarketDB marketDB;
 
     public SellerController(MarketDB marketDB) {
         this.marketDB = marketDB;

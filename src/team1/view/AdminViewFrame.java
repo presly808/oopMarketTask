@@ -1,6 +1,7 @@
 package team1.view;
 
-import team1.Authentication.LoginPass;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import team1.controller.AdminController;
 import team1.model.Admin;
 import team1.model.MarketDB;
@@ -12,7 +13,9 @@ import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Arc2D;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
@@ -21,21 +24,19 @@ import java.util.ArrayList;
  */
 public class AdminViewFrame extends JFrame{
 
-
-
     private MarketDB marketDB; //временная переменная для теста
     private AdminController adminController;
     private DefaultListModel productListModel = new DefaultListModel();
     private JList productList = new JList(productListModel);
 
-    public AdminViewFrame(MarketDB marketDB)  //marketDB - временный параметр для теста
+    public AdminViewFrame(AdminController adminController)  //marketDB - временный параметр для теста
     {
+        this.adminController = adminController;
+        this.marketDB = adminController.marketDB;
         setTitle("Admin view");
         setSize(600, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.marketDB = marketDB;
-        adminController = new AdminController(marketDB);
         init();
         setVisible(true);
 
@@ -413,6 +414,12 @@ public class AdminViewFrame extends JFrame{
                         if (doesExist == false) {
                             marketDB.getAdmins().add(new Admin(id, login, password));
                             userAdded();
+                            try {
+                                adminController.updateAdmins();
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+                            addToAdminFile(new Admin(id, login, password));
                             System.out.println(marketDB.getAdmins());
                         } else {
                             errorMessage();
@@ -426,6 +433,12 @@ public class AdminViewFrame extends JFrame{
                         if (doesExist == false) {
                             marketDB.getSellers().add(new Seller(id, login, password));
                             userAdded();
+                            try {
+                                adminController.updateSellers();
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
+                            addToSellerFile(new Seller(id, login, password));
                             System.out.println(marketDB.getSellers());
                         } else {
                             errorMessage();
@@ -450,6 +463,42 @@ public class AdminViewFrame extends JFrame{
                     newLogin.setBorder(BorderFactory.createLineBorder(Color.red));
                     newPassword.setText("");
                     doesExist=false;
+                }
+
+                public void addToAdminFile(Admin admin) {
+                    String path = "C:\\AdminUsers.json";
+                    File jsonAdminFile = new File(path);
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("id", admin.getId());
+                    jsonObject.put("login", admin.getLogin());
+                    jsonObject.put("pass", admin.getPass());
+                    try {
+                        FileWriter fileWriter = new FileWriter(jsonAdminFile, true);
+                        fileWriter.write(jsonObject.toString());
+                        fileWriter.append("\n");
+                        fileWriter.flush();
+                        fileWriter.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                public void addToSellerFile(Seller seller) {
+                    String path = "C:\\SellerUsers.json";
+                    File jsonSellerFile = new File(path);
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("id", seller.getId());
+                    jsonObject.put("login", seller.getLogin());
+                    jsonObject.put("pass", seller.getPass());
+                    try {
+                        FileWriter fileWriter = new FileWriter(jsonSellerFile, true);
+                        fileWriter.write(jsonObject.toString());
+                        fileWriter.append("\n");
+                        fileWriter.flush();
+                        fileWriter.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }

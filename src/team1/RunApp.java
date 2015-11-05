@@ -1,14 +1,12 @@
 package team1;
 
-import team1.Authentication.LoginPassFrame;
-import team1.controller.AdminController;
-import team1.controller.SellerController;
-import team1.model.*;
-import team1.view.AdminView;
 import team1.Authentication.LoginPass;
-import team1.view.SellerView;
-
-import java.util.ArrayList;
+import team1.Authentication.LoginPassFrame;
+import team1.controller.LoginController;
+import team1.model.Admin;
+import team1.model.MarketDB;
+import team1.model.Product;
+import team1.model.Seller;
 
 /**
  * Created by serhii on 25.10.15.
@@ -28,7 +26,7 @@ public class RunApp {
         marketDB.getAdmins().add(admin);
         marketDB.getSellers().add(seller);
 
-        LoginPassFrame loginPassFrame = new LoginPassFrame(marketDB);
+        LoginPassFrame loginPassFrame = new LoginPassFrame(new LoginPass(new LoginController(marketDB)));
 
 
     }

@@ -1,5 +1,6 @@
 package team1.view;
 
+import team1.controller.AdminController;
 import team1.model.Admin;
 import team1.model.MarketDB;
 import team1.model.Product;
@@ -22,7 +23,7 @@ public class FrameTest {
         marketDB.getProducts().add(product1);
         marketDB.getProducts().add(product2);
 
-        AdminViewFrame adminViewFrame = new AdminViewFrame(marketDB);
+        AdminViewFrame adminViewFrame = new AdminViewFrame(new AdminController(marketDB));
     }
 
 }

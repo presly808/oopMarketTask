@@ -9,12 +9,12 @@ import team1.model.MarketDB;
 import javax.swing.*;
 
 public class SellerViewFrame extends JFrame {
-    //private SellerController sellerController;
+    private SellerController sellerController;
     private MarketDB marketDB;
 
-    public SellerViewFrame(MarketDB marketDB){
-        //this.sellerController = sellerController;
-        this.marketDB = marketDB;
+    public SellerViewFrame(SellerController sellerController){
+        this.sellerController = sellerController;
+        this.marketDB = sellerController.marketDB;
         setTitle("Seller Console");
         setSize(1000, 500);
         setLocationRelativeTo(null);

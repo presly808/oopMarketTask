@@ -1,5 +1,9 @@
 package team1.Authentication;
 
+import org.json.simple.parser.ParseException;
+import team1.controller.AdminController;
+import team1.controller.LoginController;
+import team1.controller.SellerController;
 import team1.model.Admin;
 import team1.model.MarketDB;
 import team1.model.Seller;
@@ -17,12 +21,20 @@ import java.awt.event.ActionListener;
  */
 public class LoginPassFrame extends JFrame {
     private MarketDB marketDB;
+    private LoginPass loginPass;
     private JTextField login;
     private JTextField password;
     private JLabel incorrectPass;
 
-    public LoginPassFrame(MarketDB marketDB) throws HeadlessException {
-        this.marketDB = marketDB;
+    public LoginPassFrame(LoginPass loginPass) throws HeadlessException{
+        this.loginPass = loginPass;
+        this.marketDB = loginPass.marketDB;
+        try {
+            loginPass.updateAdmins();
+            loginPass.updateSellers();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         setTitle("login/pass");
         setSize(500, 300);
         setLocationRelativeTo(null);
@@ -77,13 +89,13 @@ public class LoginPassFrame extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            LoginPass loginPass = new LoginPass(marketDB);
+            LoginPass loginPass = new LoginPass(new LoginController(marketDB));
             User user = loginPass.loginFrame(login.getText(),password.getText());
             if (user instanceof Admin){
-                AdminViewFrame adminFrame = new AdminViewFrame(marketDB);
+                AdminViewFrame adminFrame = new AdminViewFrame(new AdminController(marketDB));
                 setVisible(false);
             } else if (user instanceof Seller){
-                SellerViewFrame sellerFrame = new SellerViewFrame(marketDB);
+                SellerViewFrame sellerFrame = new SellerViewFrame(new SellerController(marketDB));
                 setVisible(false);
             } else {
                 login.setText("");
