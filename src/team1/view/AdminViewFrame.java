@@ -24,6 +24,7 @@ public class AdminViewFrame extends JFrame{
 
     private MarketDB marketDB; //временная переменная для теста
     private AdminController adminController;
+    private DefaultListModel productListModel = new DefaultListModel();
 
     public AdminViewFrame(MarketDB marketDB)  //marketDB - временный параметр для теста
     {
@@ -45,7 +46,6 @@ public class AdminViewFrame extends JFrame{
 
         contentProducts.setLayout(new GridLayout(2, 1));
 
-        DefaultListModel productListModel = new DefaultListModel();
         JList productList = new JList(productListModel);
         ArrayList productsArrayList = adminController.getAll();
         for (Object obj: productsArrayList){
@@ -175,9 +175,9 @@ public class AdminViewFrame extends JFrame{
             addButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    adminController.addProduct(barCode.getText(), model.getText(), Double.parseDouble(price.getText()));
+                    productListModel.addElement(adminController.addProduct(barCode.getText(), model.getText(), Double.parseDouble(price.getText())));
                     addJFrame.setVisible(false);
-                }
+                 }
             });
 
             addJFrame.getContentPane().add(addButton);

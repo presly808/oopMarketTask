@@ -16,9 +16,10 @@ public class AdminController implements IAdminController {
     }
 
     @Override
-    public void addProduct(String barCode, String model, double price) {
+    public Product addProduct(String barCode, String model, double price) {
         Product product = new Product(barCode, model, price);
         marketDB.getProducts().add(product);
+        return  product;
     }
 
     @Override
