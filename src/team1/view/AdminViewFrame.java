@@ -4,6 +4,7 @@ import team1.Authentication.LoginPass;
 import team1.controller.AdminController;
 import team1.model.Admin;
 import team1.model.MarketDB;
+import team1.model.Product;
 import team1.model.Seller;
 
 import javax.swing.*;
@@ -25,6 +26,7 @@ public class AdminViewFrame extends JFrame{
     private MarketDB marketDB; //временная переменная для теста
     private AdminController adminController;
     private DefaultListModel productListModel = new DefaultListModel();
+    private JList productList = new JList(productListModel);
 
     public AdminViewFrame(MarketDB marketDB)  //marketDB - временный параметр для теста
     {
@@ -46,7 +48,7 @@ public class AdminViewFrame extends JFrame{
 
         contentProducts.setLayout(new GridLayout(2, 1));
 
-        JList productList = new JList(productListModel);
+
         ArrayList productsArrayList = adminController.getAll();
         for (Object obj: productsArrayList){
             productListModel.addElement(obj);
@@ -203,12 +205,54 @@ public class AdminViewFrame extends JFrame{
     }
 
     private class deleteActionListener implements ActionListener{
+        JFrame deleteJFrame = new JFrame();
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Button Delete is pressed");
+            if (productList.isSelectionEmpty()){
+                System.out.println("To remove, you need to select an item in the list!");
+                return;};
+
+            deleteJFrame.getContentPane().removeAll();
+            deleteJFrame.setTitle("Delete product");
+            deleteJFrame.setSize(600, 200);
+            deleteJFrame.setLocationRelativeTo(null);
+            deleteJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+            deleteJFrame.setLayout(new GridLayout(2, 1));
+
+            deleteJFrame.getContentPane().add(new JTextArea("Are you sure you want to delete " + productList.getSelectedValue() + "?"));
+
+            JButton addButton = new JButton("OK");
+            addButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Product product = (Product) productList.getSelectedValue();
+                    adminController.deleteProduct(product.getBarCode());
+                    productListModel.removeElement(productList.getSelectedValue());
+                    deleteJFrame.setVisible(false);
+                }
+            });
+
+            JButton cancelButton = new JButton("CANCEL");
+            cancelButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    deleteJFrame.setVisible(false);
+                }
+            });
+
+            JPanel buttonsPanel = new JPanel();
+            buttonsPanel.setLayout(new GridLayout(1, 2, 5, 0));
+            deleteJFrame.add(buttonsPanel, BorderLayout.SOUTH);
+
+            buttonsPanel.add(addButton);
+            buttonsPanel.add(cancelButton);
+            deleteJFrame.setVisible(true);
+
+            };
         }
-    }
+
 
     private class addUserActionListener implements ActionListener{
         private JTextField newLogin, newPassword;
