@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public interface IAdminController {
 
     Product addProduct(String barCode, String model, double price);
+    void renameProduct(Product product, String barCode, String model, double price);
     boolean deleteProduct(String barCode);
     ArrayList<Product> getAll();
     Product findProductByName(String name);

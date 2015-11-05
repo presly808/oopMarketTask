@@ -23,6 +23,13 @@ public class AdminController implements IAdminController {
     }
 
     @Override
+    public void renameProduct(Product product, String barCode, String model, double price) {
+        product.setBarCode(barCode);
+        product.setModel(model);
+        product.setPrice(price);
+    }
+
+    @Override
     public boolean deleteProduct(String barCode) {
         Product tempProductForDel = new Product();
         tempProductForDel.setBarCode(barCode);

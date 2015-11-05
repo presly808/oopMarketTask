@@ -156,7 +156,7 @@ public class AdminViewFrame extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {
 
-
+            addJFrame.getContentPane().removeAll();
             addJFrame.setTitle("Add new product");
             addJFrame.setSize(600, 200);
             addJFrame.setLocationRelativeTo(null);
@@ -189,10 +189,66 @@ public class AdminViewFrame extends JFrame{
     }
 
    private class renameActionListener implements ActionListener{
+       JFrame renameJFrame = new JFrame();
+       JTextField barCode = new JTextField("");
+       JTextField model = new JTextField("");
+       JTextField price = new JTextField("");
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Button  Rename is pressed");
+           if (productList.isSelectionEmpty()){
+                System.out.println("To rename, you need to select an item in the list!");
+                return;};
+
+            renameJFrame.getContentPane().removeAll();
+            renameJFrame.setTitle("Remove product");
+            renameJFrame.setSize(600, 200);
+            renameJFrame.setLocationRelativeTo(null);
+            renameJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+            renameJFrame.setLayout(new GridLayout(4, 2));
+
+            renameJFrame.getContentPane().add(new JLabel("barcode:"));
+            renameJFrame.getContentPane().add(barCode);
+            renameJFrame.getContentPane().add(new JLabel("model:"));
+            renameJFrame.getContentPane().add(model);
+            renameJFrame.getContentPane().add(new JLabel("price:"));
+            renameJFrame.getContentPane().add(price);
+
+            Product product = (Product) productList.getSelectedValue();
+            barCode.setText(product.getBarCode());
+            model.setText(product.getModel());
+            price.setText("" + product.getPrice());
+
+            JButton addButton = new JButton("OK");
+            addButton.setMnemonic('O');
+            addButton.setToolTipText("press after typing all fields");
+            addButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    adminController.renameProduct((Product) productList.getSelectedValue(), barCode.getText(), model.getText(), Double.parseDouble(price.getText()));
+                    renameJFrame.setVisible(false);
+                }
+            });
+
+            JButton cancelButton = new JButton("CANCEL");
+            cancelButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                   renameJFrame.setVisible(false);
+                }
+            });
+
+
+            JPanel buttonsPanel = new JPanel();
+            buttonsPanel.setLayout(new GridLayout(1, 2, 5, 0));
+            renameJFrame.add(buttonsPanel, BorderLayout.SOUTH);
+
+            buttonsPanel.add(addButton);
+            buttonsPanel.add(cancelButton);
+
+            renameJFrame.setVisible(true);
+
         }
     }
 
