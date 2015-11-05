@@ -32,28 +32,31 @@ public class LoginPassFrame extends JFrame {
     }
 
     void init(){
+
         login = new JTextField("");
         password = new JPasswordField("");
-        Font font = new Font(null, Font.BOLD, 18);
+        Font fontForLabels = new Font(null, Font.BOLD, 18);
+        Font fontForErrorMessage = new Font(null, Font.BOLD, 20);
 
         setLayout(new GridLayout(4, 1));
 
         JPanel loginPanel = new JPanel(new GridLayout(1,2));
         JLabel loginLabel = new JLabel("Login: ");
-        loginLabel.setFont(font);
+        loginLabel.setFont(fontForLabels);
         loginPanel.add(loginLabel);
         loginPanel.add(login);
 
         JPanel passwordPanel = new JPanel(new GridLayout(1,2));
         JLabel passLabel = new JLabel("Password: ");
-        passLabel.setFont(font);
+        passLabel.setFont(fontForLabels);
         passwordPanel.add(passLabel);
         passwordPanel.add(password);
 
 
-        JPanel buttonPanel = new JPanel(new GridLayout(1,3));
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
         JButton okButton = new JButton("OK");
-        okButton.setFont(font);
+
+        okButton.setFont(fontForLabels);
         buttonPanel.add(new JLabel(""));
         buttonPanel.add(okButton);
         buttonPanel.add(new JLabel(""));
@@ -66,6 +69,7 @@ public class LoginPassFrame extends JFrame {
         getContentPane().add(buttonPanel);
 
         incorrectPass = new JLabel("", SwingConstants.CENTER);
+        incorrectPass.setFont(fontForErrorMessage);
         getContentPane().add(incorrectPass);
     }
 
