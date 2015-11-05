@@ -47,6 +47,8 @@ public class User {
         final StringBuilder sb = new StringBuilder("User{");
         sb.append("id=").append(id);
         sb.append(", login='").append(login).append('\'');
+        if (this instanceof Admin){ sb.append(", admin");}
+        else {sb.append(", seller");}
         sb.append('}');
         return sb.toString();
     }
