@@ -6,19 +6,24 @@ package team1.view;
 
 import team1.controller.SellerController;
 import team1.model.MarketDB;
+import team1.model.Product;
 import team1.model.Seller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class SellerViewFrame extends JFrame {
     private SellerController sellerController;
     private MarketDB marketDB;
-    private DefaultListModel productListModel = new DefaultListModel();
-    private JList products = new JList(productListModel);
+    private DefaultListModel listOfBillProducts = new DefaultListModel();
+    private JList products = new JList(listOfBillProducts);
     private Seller seller;
+    private Random random = new Random();
 
     public SellerViewFrame(SellerController sellerController, Seller seller){
         this.sellerController = sellerController;
@@ -60,6 +65,8 @@ public class SellerViewFrame extends JFrame {
         actionButtons.add(undoButton);
         actionButtons.add(saveButton);
 
+        scanProduct.addActionListener(new ScanProductListener());
+
         JLabel userIcon = new JLabel(new ImageIcon("C:\\login.png"));
         JLabel userName = new JLabel(seller.getLogin());
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
@@ -79,6 +86,16 @@ public class SellerViewFrame extends JFrame {
 
         getContentPane().add(productList);
 
+    }
+
+    private class ScanProductListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int size = sellerController.marketDB.getProducts().size();
+            Product product = sellerController.marketDB.getProducts().get(random.nextInt(size));
+            listOfBillProducts.addElement(product);
+        }
     }
 }
 
