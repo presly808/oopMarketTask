@@ -8,6 +8,7 @@ import team1.model.Product;
 import team1.model.Seller;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -160,7 +161,7 @@ public class AdminViewFrame extends JFrame{
 
             addJFrame.getContentPane().removeAll();
             addJFrame.setTitle("Add new product");
-            addJFrame.setSize(600, 200);
+            addJFrame.setSize(300, 200);
             addJFrame.setLocationRelativeTo(null);
             addJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
@@ -204,18 +205,24 @@ public class AdminViewFrame extends JFrame{
 
             renameJFrame.getContentPane().removeAll();
             renameJFrame.setTitle("Remove product");
-            renameJFrame.setSize(600, 200);
+            renameJFrame.setSize(300, 200);
             renameJFrame.setLocationRelativeTo(null);
             renameJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
-            renameJFrame.setLayout(new GridLayout(4, 2));
+            JPanel mainPanel = new JPanel();
+            mainPanel.setLayout(new BorderLayout(5, 5));
+            mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+            JPanel fieldPanel = new JPanel();
+            fieldPanel.setLayout(new GridLayout(4, 2));
 
-            renameJFrame.getContentPane().add(new JLabel("barcode:"));
-            renameJFrame.getContentPane().add(barCode);
-            renameJFrame.getContentPane().add(new JLabel("model:"));
-            renameJFrame.getContentPane().add(model);
-            renameJFrame.getContentPane().add(new JLabel("price:"));
-            renameJFrame.getContentPane().add(price);
+            fieldPanel.add(new JLabel("barcode:"));
+            fieldPanel.add(barCode);
+            fieldPanel.add(new JLabel("model:"));
+            fieldPanel.add(model);
+            fieldPanel.add(new JLabel("price:"));
+            fieldPanel.add(price);
+
+            mainPanel.add(fieldPanel, BorderLayout.CENTER);
 
             Product product = (Product) productList.getSelectedValue();
             barCode.setText(product.getBarCode());
@@ -244,11 +251,12 @@ public class AdminViewFrame extends JFrame{
 
             JPanel buttonsPanel = new JPanel();
             buttonsPanel.setLayout(new GridLayout(1, 2, 5, 0));
-            renameJFrame.add(buttonsPanel, BorderLayout.SOUTH);
+            mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
             buttonsPanel.add(addButton);
             buttonsPanel.add(cancelButton);
 
+            renameJFrame.add(mainPanel);
             renameJFrame.setVisible(true);
 
         }
@@ -264,14 +272,20 @@ public class AdminViewFrame extends JFrame{
 
             findJFrame.getContentPane().removeAll();
             findJFrame.setTitle("Find product");
-            findJFrame.setSize(600, 200);
+            findJFrame.setSize(450, 120);
             findJFrame.setLocationRelativeTo(null);
             findJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
-            findJFrame.setLayout(new GridLayout(2, 2));
+            JPanel mainPanel = new JPanel();
+            mainPanel.setLayout(new BorderLayout(5, 5));
+            mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-            findJFrame.getContentPane().add(new JLabel("barcode:"));
-            findJFrame.getContentPane().add(barCode);
+            JPanel jPanel = new JPanel();
+            jPanel.setLayout(new GridLayout(1,2));
+
+            jPanel.add(new JLabel("barcode:"));
+            jPanel.add(barCode);
+            mainPanel.add(jPanel, BorderLayout.CENTER);
 
             JButton addButton = new JButton("OK");
             addButton.addActionListener(new ActionListener() {
@@ -297,11 +311,12 @@ public class AdminViewFrame extends JFrame{
 
             JPanel buttonsPanel = new JPanel();
             buttonsPanel.setLayout(new GridLayout(1, 2, 5, 0));
-            findJFrame.add(buttonsPanel, BorderLayout.SOUTH);
+            mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
             buttonsPanel.add(addButton);
             buttonsPanel.add(cancelButton);
 
+            findJFrame.add(mainPanel);
             findJFrame.setVisible(true);
 
           }
@@ -318,14 +333,14 @@ public class AdminViewFrame extends JFrame{
 
             deleteJFrame.getContentPane().removeAll();
             deleteJFrame.setTitle("Delete product");
-            deleteJFrame.setSize(600, 200);
+            deleteJFrame.setSize(550, 100);
             deleteJFrame.setLocationRelativeTo(null);
             deleteJFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
-            deleteJFrame.setLayout(new GridLayout(2, 1));
-
-            deleteJFrame.getContentPane().add(new JTextArea("Are you sure you want to delete " + productList.getSelectedValue() + "?"));
-
+            JPanel mainPanel = new JPanel();
+            mainPanel.setLayout(new BorderLayout(5, 5));
+            mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            mainPanel.add(new JLabel("Are you sure you want to delete " + productList.getSelectedValue() + "?"), BorderLayout.CENTER);
             JButton addButton = new JButton("OK");
             addButton.addActionListener(new ActionListener() {
                 @Override
@@ -346,11 +361,12 @@ public class AdminViewFrame extends JFrame{
             });
 
             JPanel buttonsPanel = new JPanel();
-            buttonsPanel.setLayout(new GridLayout(1, 2, 5, 0));
-            deleteJFrame.add(buttonsPanel, BorderLayout.SOUTH);
+            buttonsPanel.setLayout(new GridLayout(1, 2, 5, 1));
+            mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
             buttonsPanel.add(addButton);
             buttonsPanel.add(cancelButton);
+            deleteJFrame.add(mainPanel);
             deleteJFrame.setVisible(true);
 
             };
