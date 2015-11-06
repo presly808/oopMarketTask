@@ -37,7 +37,7 @@ public class LoginPassFrame extends JFrame {
             e.printStackTrace();
         }
         setTitle("login/pass");
-        setSize(500, 300);
+        setSize(350, 125);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         init();
@@ -48,41 +48,19 @@ public class LoginPassFrame extends JFrame {
 
         login = new JTextField("");
         password = new JPasswordField("");
-        Font fontForLabels = new Font(null, Font.BOLD, 18);
-        Font fontForErrorMessage = new Font(null, Font.BOLD, 20);
+        setLayout(new GridLayout(3, 2));
 
-        setLayout(new GridLayout(4, 1));
+        getContentPane().add(new JLabel("login:"));
+        getContentPane().add(login);
+        getContentPane().add(new JLabel("password:"));
+        getContentPane().add(password);
 
-        JPanel loginPanel = new JPanel(new GridLayout(1,2));
-        JLabel loginLabel = new JLabel("Login: ");
-        loginLabel.setFont(fontForLabels);
-        loginPanel.add(loginLabel);
-        loginPanel.add(login);
-
-        JPanel passwordPanel = new JPanel(new GridLayout(1,2));
-        JLabel passLabel = new JLabel("Password: ");
-        passLabel.setFont(fontForLabels);
-        passwordPanel.add(passLabel);
-        passwordPanel.add(password);
-
-
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
         JButton okButton = new JButton("OK");
-
-        okButton.setFont(fontForLabels);
-        buttonPanel.add(new JLabel(""));
-        buttonPanel.add(okButton);
-        buttonPanel.add(new JLabel(""));
+        okButton.setMnemonic('O');
         okButton.setToolTipText("press after typing login and password");
         okButton.addActionListener(new MyActionListener());
-
-
-        getContentPane().add(loginPanel);
-        getContentPane().add(passwordPanel);
-        getContentPane().add(buttonPanel);
-
-        incorrectPass = new JLabel("", SwingConstants.CENTER);
-        incorrectPass.setFont(fontForErrorMessage);
+        getContentPane().add(okButton);
+        incorrectPass = new JLabel("",SwingConstants.CENTER);
         getContentPane().add(incorrectPass);
     }
 
