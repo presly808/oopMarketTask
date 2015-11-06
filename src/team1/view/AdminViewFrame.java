@@ -31,7 +31,7 @@ public class AdminViewFrame extends JFrame{
         this.adminController = adminController;
         this.marketDB = adminController.marketDB;
         setTitle("Admin view");
-        setSize(600, 200);
+        setSize(600, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         init();
