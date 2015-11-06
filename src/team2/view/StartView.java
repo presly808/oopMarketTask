@@ -26,12 +26,15 @@ public class StartView extends JFrame {
     public void startMenu() {
 
         setTitle("How are you?");
-        setSize(400, 200);
+        setSize(600, 300);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         JLabel loggedUserTxt = new JLabel("Now logged in: ");
 
         JLabel loggedUser = new JLabel(svc.getMarketDB().getUser().toString());
+
+        JLabel hint = new JLabel("Try: guest-guest, admin-admin,");
+        JLabel hint1 = new JLabel("cashmen-cashmen, and any wrong login");
 
         JLabel pleaseLogin = new JLabel("Please, input login: ");
         JLabel pleasePassw = new JLabel("Please, input password: ");
@@ -39,7 +42,7 @@ public class StartView extends JFrame {
         login = new JTextField("");
         password = new JTextField("");
 
-        setLayout(new GridLayout(4,2));
+        setLayout(new GridLayout(5,2));
 
         getContentPane().add(loggedUserTxt);
         getContentPane().add(loggedUser);
@@ -57,6 +60,9 @@ public class StartView extends JFrame {
 
         getContentPane().add(loginButton);
         getContentPane().add(exitButton);
+
+        getContentPane().add(hint);
+        getContentPane().add(hint1);
 
         setVisible(true);
     }
@@ -78,8 +84,6 @@ public class StartView extends JFrame {
                         "Login or password is incorrect. try again or go out!",
                         "Inane error",
                         JOptionPane.ERROR_MESSAGE);
-                login.setText("");
-                password.setText("");
             }
             getOuter().dispose();
             svc.getMarketDB().getUser().startView(svc.getMarketDB());
