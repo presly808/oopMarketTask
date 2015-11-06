@@ -44,17 +44,18 @@ public class AdminViewFrame extends JFrame{
         JPanel contentProducts = new JPanel();
         JPanel contentUsers = new JPanel();
 
-        contentProducts.setLayout(new GridLayout(2, 1));
-
+        //contentProducts.setLayout(new GridLayout(2, 1));
+        contentProducts.setLayout(new BorderLayout(5, 5));
 
         ArrayList productsArrayList = adminController.getAll();
         for (Object obj: productsArrayList){
             productListModel.addElement(obj);
         }
-        contentProducts.add(productList);
+        //contentProducts.add(productList, BorderLayout.CENTER);
         contentProducts.add(new JScrollPane(productList), BorderLayout.CENTER);
 
-        contentUsers.setLayout(new GridLayout(2, 1));
+        //contentUsers.setLayout(new GridLayout(2, 1));
+        contentUsers.setLayout(new BorderLayout(5, 5));
 
 
         JList userList = new JList(userListModel);
@@ -66,7 +67,7 @@ public class AdminViewFrame extends JFrame{
         contentUsers.add(new JScrollPane(userList), BorderLayout.CENTER);
 
         JPanel buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new GridLayout(1, 2, 5, 0));
+        buttonsPanel.setLayout(new GridLayout(1, 5, 5, 0));
         contentProducts.add(buttonsPanel, BorderLayout.SOUTH);
 
         JButton showButton = new JButton("Show All");
@@ -99,13 +100,16 @@ public class AdminViewFrame extends JFrame{
         findButton.addActionListener(new findActionListener());
         buttonsPanel.add(findButton);
 
-        contentUsers.setLayout(new GridLayout(1, 1));
+        //contentUsers.setLayout(new GridLayout(1, 1));
+        JPanel buttonsUserPanel = new JPanel();
+        buttonsUserPanel.setLayout(new GridLayout(1, 1));
+        contentUsers.add(buttonsUserPanel, BorderLayout.SOUTH);
 
         JButton addUserButton = new JButton("Add User");
         addUserButton.setMnemonic('U');
         addUserButton.setToolTipText("press to add user");
         addUserButton.addActionListener(new addUserActionListener());
-        contentUsers.add(addUserButton);
+        buttonsUserPanel.add(addUserButton);
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
