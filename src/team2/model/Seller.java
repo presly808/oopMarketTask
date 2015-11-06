@@ -11,4 +11,8 @@ public class Seller extends User {
 
     public Seller() {
     }
+
+    public void startView() {
+        System.out.println("START SELLER VIEW !!!!!!!!!!!!!!!!!");
+    }
 }

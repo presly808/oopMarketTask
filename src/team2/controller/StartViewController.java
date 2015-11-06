@@ -14,6 +14,10 @@ public class StartViewController {
         this.marketDB = db;
     }
 
+    public MarketDB getMarketDB() {
+        return marketDB;
+    }
+
     public User checkLoginPassw(String login, String password) {
         User userWhoTryToEnter = new User(0,login,password);
         userWhoTryToEnter = marketDB.isUserValid(userWhoTryToEnter);
@@ -21,10 +25,10 @@ public class StartViewController {
              System.out.println( "User guest or not valid" );
              return userWhoTryToEnter;
          } else {
-             System.out.println( "valid user" );
+             marketDB.setUser(userWhoTryToEnter);
+             //System.out.println( "valid user " + marketDB.getUser().toString());
+             return marketDB.getUser();
 
-             return null;
-             // check instance of user admin or seller and route
          }
     }
 }

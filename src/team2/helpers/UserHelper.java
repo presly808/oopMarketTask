@@ -4,7 +4,6 @@ import team2.model.Admin;
 import team2.model.Guest;
 import team2.model.Seller;
 import team2.model.User;
-import team2.helpers.IOHelper;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class UserHelper {
             return user;
         }
 
-        return null;//new UserGuest();
+        return new Guest(0,"guest","guest");
     }
 
 
@@ -45,6 +44,7 @@ public class UserHelper {
         testUserDB.add( new Guest(0,"guest","guest"));
         testUserDB.add( new Admin(1,"admin","admin"));
         testUserDB.add( new Seller(2,"cashmen","cashmen"));
+
         saveUsersDB(testUserDB);
 
         testUserDB = loadUsersDB();

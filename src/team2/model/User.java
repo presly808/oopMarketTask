@@ -71,4 +71,8 @@ public class User implements Serializable{
         result = 31 * result + pass.hashCode();
         return result;
     }
+
+    public void startView(){
+
+    }
 }

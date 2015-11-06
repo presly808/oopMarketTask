@@ -11,4 +11,8 @@ public class Admin extends User {
     public Admin(int id, String login, String pass) {
         super(id, login, pass);
     }
+
+    public void startView() {
+        System.out.println("STARTING ADMIN VIEW!!!!!!!!!!!!!");
+    }
 }

@@ -9,16 +9,25 @@ import java.util.ArrayList;
  */
 public class MarketDB {
 
+    User user;
 
     private ArrayList<Product> products = new ArrayList<>();
-    //private ArrayList<Admin> admins = new ArrayList<>();
-    //private ArrayList<Seller> sellers = new ArrayList<>();
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Bill> bills = new ArrayList<>();
     private double amountMoney;
 
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+
+        this.user = user;
+    }
+
     public MarketDB() {
         this.users = UserHelper.loadUsersDB();
+        this.user = new Guest(0,"guest","guest");
     }
 
     public ArrayList<Product> getProducts() {
@@ -67,6 +76,6 @@ public class MarketDB {
                 return users.get(i);
             }
         }
-        return users.get(0); /// пусть нулевой пользователь всегда гость
+        return users.get(0); /// users[0] - always guest. default user.
     }
 }

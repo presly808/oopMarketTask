@@ -11,4 +11,8 @@ public class Guest extends User {
     public Guest(int id, String login, String pass) {
         super(id, login, pass);
     }
+
+    public void startView() {
+        System.out.println("START GUEST VIEW !!!!!!!!!!!!!!!!!");
+    }
 }

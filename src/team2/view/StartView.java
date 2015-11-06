@@ -13,14 +13,14 @@ import java.awt.event.ActionListener;
  * Created by Dima on 04.11.2015.
  */
 public class StartView extends JFrame {
-    private User user;
     private StartViewController svc;
     private JTextField login;
     private JTextField password;
 
-    public StartView(User user, StartViewController startViewController) {
-        this.user = user;
+    public StartView(StartViewController startViewController) {
         this.svc = startViewController;
+
+        startMenu();
     }
 
     public void startMenu() {
@@ -30,7 +30,9 @@ public class StartView extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         JLabel loggedUserTxt = new JLabel("Now logged in: ");
-        JLabel loggedUser = new JLabel(this.user.toString());
+
+        JLabel loggedUser = new JLabel(svc.getMarketDB().getUser().toString());
+
         JLabel pleaseLogin = new JLabel("Please, input login: ");
         JLabel pleasePassw = new JLabel("Please, input password: ");
 
@@ -51,6 +53,7 @@ public class StartView extends JFrame {
         JButton loginButton = new JButton("Login");
         loginButton.addActionListener(new LoginListener());
         JButton exitButton = new JButton("Exit");
+        exitButton.addActionListener(new ExitListener());
         //exitButton //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         getContentPane().add(loginButton);
@@ -69,10 +72,10 @@ public class StartView extends JFrame {
         public void actionPerformed(ActionEvent e) {
             String loginText = login.getText();
             String passwordText = password.getText();
-            if ( user.equals( svc.checkLoginPassw(loginText, passwordText) ) ) { // guest
-                JLabel logAgain = new JLabel("Login or password is incorrect. try again or go out!");
-                getContentPane().add(logAgain);
-                JOptionPane.showMessageDialog(this,
+            User theUserWhoTryToLogIn = svc.checkLoginPassw(loginText, passwordText);
+            //if ( svc.getMarketDB().getUser().equals(new Guest(0,"guest","guest")) ) { // guest
+            if ( theUserWhoTryToLogIn.equals(new Guest(0,"guest","guest")) ) { // guest
+                JOptionPane.showMessageDialog(getOuter(),
                         "Login or password is incorrect. try again or go out!",
                         "Inane error",
                         JOptionPane.ERROR_MESSAGE);
@@ -80,9 +83,18 @@ public class StartView extends JFrame {
                 password.setText("");
             } else { // user not gest. login successful
                 getOuter().dispose(); // close login window
-                return;
+                // go to admin view or seller view
             }
+            svc.getMarketDB().getUser().startView();
 
+        }
+    }
+
+    private class ExitListener extends Component implements  ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            getOuter().dispose();
         }
     }
 
