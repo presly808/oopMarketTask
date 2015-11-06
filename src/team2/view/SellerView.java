@@ -14,6 +14,7 @@ public class SellerView {
     }
 
     public void startView() {
+        System.out.println("now logged in: " + sellerController.getMarketDB().getUser().toString());
         System.out.println("Seller view started");
     }
 }
