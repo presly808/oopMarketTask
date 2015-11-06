@@ -23,6 +23,7 @@ public class AdminViewFrame extends JFrame{
     private MarketDB marketDB; //временная переменная для теста
     private AdminController adminController;
     private DefaultListModel productListModel = new DefaultListModel();
+    private DefaultListModel userListModel = new DefaultListModel();
     private JList productList = new JList(productListModel);
 
     public AdminViewFrame(AdminController adminController)  //marketDB - временный параметр для теста
@@ -55,7 +56,7 @@ public class AdminViewFrame extends JFrame{
 
         contentUsers.setLayout(new GridLayout(2, 1));
 
-        DefaultListModel userListModel = new DefaultListModel();
+
         JList userList = new JList(userListModel);
         ArrayList usersArrayList = adminController.getAllUsers();
         for (Object obj: usersArrayList){
@@ -408,7 +409,9 @@ public class AdminViewFrame extends JFrame{
                             }
                         }
                         if (doesExist == false) {
-                            marketDB.getAdmins().add(new Admin(id, login, password));
+                            Admin newAdmin = new Admin(id, login, password);
+                            marketDB.getAdmins().add(newAdmin);
+                            userListModel.addElement(newAdmin);
                             userAdded();
                             try {
                                 adminController.updateAdmins();
@@ -427,7 +430,9 @@ public class AdminViewFrame extends JFrame{
                             }
                         }
                         if (doesExist == false) {
-                            marketDB.getSellers().add(new Seller(id, login, password));
+                            Seller newSeller = new Seller(id, login, password);
+                            marketDB.getSellers().add(newSeller);
+                            userListModel.addElement(newSeller);
                             userAdded();
                             try {
                                 adminController.updateSellers();
