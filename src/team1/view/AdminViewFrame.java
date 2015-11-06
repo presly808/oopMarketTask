@@ -1,6 +1,5 @@
 package team1.view;
 
-import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import team1.controller.AdminController;
 import team1.model.Admin;
@@ -13,9 +12,6 @@ import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
@@ -419,7 +415,7 @@ public class AdminViewFrame extends JFrame{
                             } catch (ParseException e1) {
                                 e1.printStackTrace();
                             }
-                            addToAdminFile(new Admin(id, login, password));
+                            adminController.addToAdminFile(new Admin(id, login, password));
                             System.out.println(marketDB.getAdmins());
                         } else {
                             errorMessage();
@@ -438,7 +434,7 @@ public class AdminViewFrame extends JFrame{
                             } catch (ParseException e1) {
                                 e1.printStackTrace();
                             }
-                            addToSellerFile(new Seller(id, login, password));
+                            adminController.addToSellerFile(new Seller(id, login, password));
                             System.out.println(marketDB.getSellers());
                         } else {
                             errorMessage();
@@ -465,41 +461,6 @@ public class AdminViewFrame extends JFrame{
                     doesExist=false;
                 }
 
-                public void addToAdminFile(Admin admin) {
-                    String path = "C:\\AdminUsers.json";
-                    File jsonAdminFile = new File(path);
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("id", admin.getId());
-                    jsonObject.put("login", admin.getLogin());
-                    jsonObject.put("pass", admin.getPass());
-                    try {
-                        FileWriter fileWriter = new FileWriter(jsonAdminFile, true);
-                        fileWriter.write(jsonObject.toString());
-                        fileWriter.append("\n");
-                        fileWriter.flush();
-                        fileWriter.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                public void addToSellerFile(Seller seller) {
-                    String path = "C:\\SellerUsers.json";
-                    File jsonSellerFile = new File(path);
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("id", seller.getId());
-                    jsonObject.put("login", seller.getLogin());
-                    jsonObject.put("pass", seller.getPass());
-                    try {
-                        FileWriter fileWriter = new FileWriter(jsonSellerFile, true);
-                        fileWriter.write(jsonObject.toString());
-                        fileWriter.append("\n");
-                        fileWriter.flush();
-                        fileWriter.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             });
         }
     }
