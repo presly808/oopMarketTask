@@ -72,7 +72,7 @@ public class User implements Serializable{
         return result;
     }
 
-    public void startView(){
+    public void startView(MarketDB marketDB){
 
     }
 }

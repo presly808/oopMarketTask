@@ -54,7 +54,6 @@ public class StartView extends JFrame {
         loginButton.addActionListener(new LoginListener());
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(new ExitListener());
-        //exitButton //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         getContentPane().add(loginButton);
         getContentPane().add(exitButton);
@@ -81,11 +80,9 @@ public class StartView extends JFrame {
                         JOptionPane.ERROR_MESSAGE);
                 login.setText("");
                 password.setText("");
-            } else { // user not gest. login successful
-                getOuter().dispose(); // close login window
-                // go to admin view or seller view
             }
-            svc.getMarketDB().getUser().startView();
+            getOuter().dispose();
+            svc.getMarketDB().getUser().startView(svc.getMarketDB());
 
         }
     }

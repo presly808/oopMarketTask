@@ -42,4 +42,8 @@ public class AdminController implements IAdminController {
 
         return marketDB.getProducts().get(index);
     }
+
+    public MarketDB getMarketDB() {
+        return marketDB;
+    }
 }

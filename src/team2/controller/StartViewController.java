@@ -26,7 +26,6 @@ public class StartViewController {
              return userWhoTryToEnter;
          } else {
              marketDB.setUser(userWhoTryToEnter);
-             //System.out.println( "valid user " + marketDB.getUser().toString());
              return marketDB.getUser();
 
          }

@@ -1,9 +1,7 @@
 package team2;
 
 
-import team2.controller.StartViewController;
 import team2.model.MarketDB;
-import team2.view.StartView;
 
 public class RunApp {
 
@@ -13,9 +11,7 @@ public class RunApp {
         //UserHelper.makeDefaultUserDB();
 
         MarketDB marketDB = new MarketDB();
-        StartViewController startViewController = new StartViewController(marketDB);
-
-        new StartView(startViewController);
+        marketDB.getUser().startView(marketDB);
 
     }
 

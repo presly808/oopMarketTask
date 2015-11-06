@@ -1,5 +1,8 @@
 package team2.model;
 
+import team2.controller.StartViewController;
+import team2.view.StartView;
+
 /**
  * Created by Dima on 04.11.2015.
  */
@@ -12,7 +15,9 @@ public class Guest extends User {
         super(id, login, pass);
     }
 
-    public void startView() {
+    public void startView(MarketDB marketDB) {
         System.out.println("START GUEST VIEW !!!!!!!!!!!!!!!!!");
+        StartViewController startViewController = new StartViewController(marketDB);
+        new StartView(startViewController);
     }
 }
