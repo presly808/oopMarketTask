@@ -8,6 +8,8 @@ import team1.model.MarketDB;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SellerViewFrame extends JFrame {
     private SellerController sellerController;
@@ -29,10 +31,15 @@ public class SellerViewFrame extends JFrame {
     private void init() {
         JPanel productList = new JPanel();
         JPanel actionButtons = new JPanel();
+        JPanel info = new JPanel();
+        JPanel infoLeft = new JPanel();
+        JPanel infoRight = new JPanel();
 
         actionButtons.setPreferredSize(new Dimension(500, 100));
+        info.setPreferredSize(new Dimension(500, 32));
         productList.setLayout(new BorderLayout(5, 5));
         actionButtons.setLayout(new GridLayout(1, 4, 5, 0));
+        productList.add(info, BorderLayout.NORTH);
         productList.add(actionButtons, BorderLayout.SOUTH);
         productList.add(new JScrollPane(products), BorderLayout.CENTER);
 
@@ -48,6 +55,24 @@ public class SellerViewFrame extends JFrame {
         actionButtons.add(scanProduct);
         actionButtons.add(undoButton);
         actionButtons.add(saveButton);
+
+        JLabel userIcon = new JLabel(new ImageIcon("C:\\login.png"));
+        JLabel userName = new JLabel("user");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+        JLabel currentDate = new JLabel(sdf.format(new Date()));
+        JLabel timeIcon = new JLabel(new ImageIcon("C:\\date.png"));
+
+        info.setLayout(new GridLayout(1,2));
+        infoLeft.setLayout(new FlowLayout(FlowLayout.LEFT));
+        infoRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        infoLeft.add(userIcon);
+        infoLeft.add(userName);
+        infoRight.add(currentDate);
+        infoRight.add(timeIcon);
+        info.add(infoLeft);
+        info.add(infoRight);
+
+
         getContentPane().add(productList);
 
     }
