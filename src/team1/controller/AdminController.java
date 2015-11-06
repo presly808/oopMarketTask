@@ -7,6 +7,8 @@ import team1.model.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -120,5 +122,41 @@ public class AdminController implements IAdminController {
             marketDB.getSellers().add(res);
         }
 
+    }
+
+    public void addToAdminFile(Admin admin) {
+        String path = "C:\\AdminUsers.json";
+        File jsonAdminFile = new File(path);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", admin.getId());
+        jsonObject.put("login", admin.getLogin());
+        jsonObject.put("pass", admin.getPass());
+        try {
+            FileWriter fileWriter = new FileWriter(jsonAdminFile, true);
+            fileWriter.write(jsonObject.toString());
+            fileWriter.append("\n");
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addToSellerFile(Seller seller) {
+        String path = "C:\\SellerUsers.json";
+        File jsonSellerFile = new File(path);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", seller.getId());
+        jsonObject.put("login", seller.getLogin());
+        jsonObject.put("pass", seller.getPass());
+        try {
+            FileWriter fileWriter = new FileWriter(jsonSellerFile, true);
+            fileWriter.write(jsonObject.toString());
+            fileWriter.append("\n");
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
