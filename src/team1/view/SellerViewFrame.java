@@ -3,8 +3,10 @@ package team1.view;
 /**
  * Created by bizianov on 02.11.2015.
  */
+
 import team1.controller.SellerController;
 import team1.model.MarketDB;
+import team1.model.Seller;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,10 +18,12 @@ public class SellerViewFrame extends JFrame {
     private MarketDB marketDB;
     private DefaultListModel productListModel = new DefaultListModel();
     private JList products = new JList(productListModel);
+    private Seller seller;
 
-    public SellerViewFrame(SellerController sellerController){
+    public SellerViewFrame(SellerController sellerController, Seller seller){
         this.sellerController = sellerController;
         this.marketDB = sellerController.marketDB;
+        this.seller = seller;
         setTitle("Seller Console");
         setSize(500, 800);
         setLocationRelativeTo(null);
@@ -57,7 +61,7 @@ public class SellerViewFrame extends JFrame {
         actionButtons.add(saveButton);
 
         JLabel userIcon = new JLabel(new ImageIcon("C:\\login.png"));
-        JLabel userName = new JLabel("user");
+        JLabel userName = new JLabel(seller.getLogin());
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
         JLabel currentDate = new JLabel(sdf.format(new Date()));
         JLabel timeIcon = new JLabel(new ImageIcon("C:\\date.png"));

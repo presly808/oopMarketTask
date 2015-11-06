@@ -25,6 +25,7 @@ public class LoginPassFrame extends JFrame {
     private JTextField login;
     private JTextField password;
     private JLabel incorrectPass;
+    private User user;
 
     public LoginPassFrame(LoginPass loginPass) throws HeadlessException{
         this.loginPass = loginPass;
@@ -95,7 +96,7 @@ public class LoginPassFrame extends JFrame {
                 AdminViewFrame adminFrame = new AdminViewFrame(new AdminController(marketDB));
                 setVisible(false);
             } else if (user instanceof Seller){
-                SellerViewFrame sellerFrame = new SellerViewFrame(new SellerController(marketDB));
+                SellerViewFrame sellerFrame = new SellerViewFrame(new SellerController(marketDB),(Seller)user);
                 setVisible(false);
             } else {
                 login.setText("");

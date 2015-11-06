@@ -86,4 +86,8 @@ public class LoginPass {
         }
 
     }
+
+    public User getUser() {
+        return user;
+    }
 }
