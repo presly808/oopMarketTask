@@ -156,4 +156,43 @@ public class AdminController implements IAdminController {
             e.printStackTrace();
         }
     }
+
+    public void addToProductFile(Product product){
+        String path = "C:\\ProductFile.json";
+        File jsonProductFile = new File(path);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("barcode", product.getBarCode());
+        jsonObject.put("model", product.getModel());
+        jsonObject.put("price", product.getPrice());
+        try {
+            FileWriter fileWriter = new FileWriter(jsonProductFile, true);
+            fileWriter.write(jsonObject.toString());
+            fileWriter.append("\n");
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFromProductFile() throws ParseException {
+        String path = "C:\\ProductFile.json";
+        File jsonProductFile = new File(path);
+        Scanner sc = null;
+        try {
+            sc = new Scanner(jsonProductFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            JSONParser jsonParser = new JSONParser();
+            JSONObject obj = (JSONObject) jsonParser.parse(line);
+            Product res = new Product();
+            res.setBarCode((String) obj.get("barcode"));
+            res.setModel((String) obj.get("model"));
+            res.setPrice((Double) obj.get("price"));
+            marketDB.getProducts().add(res);
+        }
+    }
 }
