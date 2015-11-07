@@ -155,6 +155,21 @@ public class AdministratorView extends JFrame{
         frame.getContentPane().removeAll();
         frame.repaint();
 
+        JPanel content = new JPanel();
+        JTextArea textArea = new JTextArea(10, 20);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        content.add(scrollPane);
+
+        String txt = "";
+        for (int i = 0; i < adminController.getMarketDB().getUsers().size(); i++) {
+            txt = txt + "\n" + adminController.getMarketDB().getUsers().get(i).toString();
+        }
+        textArea.setText(txt);
+
+        frame.getContentPane().add(content);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 
 }
