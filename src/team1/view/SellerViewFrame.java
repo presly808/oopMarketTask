@@ -71,6 +71,7 @@ public class SellerViewFrame extends JFrame {
 
         scanProduct.addActionListener(new ScanProductListener());
         newBill.addActionListener(new NewBillListener());
+        undoButton.addActionListener(new UndoListener());
 
         JLabel userIcon = new JLabel(new ImageIcon("C:\\login.png"));
         JLabel userName = new JLabel(seller.getLogin());
@@ -113,6 +114,16 @@ public class SellerViewFrame extends JFrame {
             totalMoney = 0;
             totalPrice.setText("Total: 0.0");
             listOfBillProducts.removeAllElements();
+        }
+    }
+
+    private class UndoListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (products.isSelectionEmpty()){
+                JFrame dialogFrame = new JFrame();
+                JOptionPane.showMessageDialog(dialogFrame, "Please select product to remove");
+            }
         }
     }
 }
