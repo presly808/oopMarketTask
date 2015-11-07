@@ -37,7 +37,7 @@ public class SellerViewFrame extends JFrame {
         this.marketDB = sellerController.marketDB;
         this.seller = seller;
         setTitle("Seller Console");
-        setSize(500, 800);
+        setSize(500, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         init();
