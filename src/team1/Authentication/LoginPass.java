@@ -58,7 +58,7 @@ public class LoginPass {
             res.setId((int) (long) obj.get("id"));
             res.setLogin((String) obj.get("login"));
             res.setPass((String) obj.get("pass"));
-            System.out.printf("%d %s %s\n", res.getId(), res.getLogin(), res.getPass());
+            //System.out.printf("%d %s %s\n", res.getId(), res.getLogin(), res.getPass());
             marketDB.getAdmins().add(res);
         }
 
@@ -81,7 +81,7 @@ public class LoginPass {
             res.setId((int) (long) obj.get("id"));
             res.setLogin((String) obj.get("login"));
             res.setPass((String) obj.get("pass"));
-            System.out.printf("%d %s %s\n", res.getId(), res.getLogin(), res.getPass());
+            //System.out.printf("%d %s %s\n", res.getId(), res.getLogin(), res.getPass());
             marketDB.getSellers().add(res);
         }
 

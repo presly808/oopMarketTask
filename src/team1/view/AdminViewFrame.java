@@ -8,7 +8,6 @@ import team1.model.Product;
 import team1.model.Seller;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -446,7 +445,7 @@ public class AdminViewFrame extends JFrame{
                                 e1.printStackTrace();
                             }
                             adminController.addToAdminFile(new Admin(id, login, password));
-                            System.out.println(marketDB.getAdmins());
+                            //System.out.println(marketDB.getAdmins());
                         } else {
                             errorMessage();
                         }
@@ -467,7 +466,7 @@ public class AdminViewFrame extends JFrame{
                                 e1.printStackTrace();
                             }
                             adminController.addToSellerFile(new Seller(id, login, password));
-                            System.out.println(marketDB.getSellers());
+                            //System.out.println(marketDB.getSellers());
                         } else {
                             errorMessage();
                         }
