@@ -29,7 +29,7 @@ public class AdminViewFrame extends JFrame{
     public AdminViewFrame(AdminController adminController)  //marketDB - временный параметр для теста
     {
         this.adminController = adminController;
-        this.marketDB = adminController.marketDB;
+        this.marketDB = adminController.getMarketDB();
         setTitle("Admin view");
         setSize(600, 400);
         setLocationRelativeTo(null);

@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class LoginPass {
-    public MarketDB marketDB;
+    private MarketDB marketDB;
     private LoginController loginController;
     private String login;
     private String password;
@@ -89,5 +89,9 @@ public class LoginPass {
 
     public User getUser() {
         return user;
+    }
+
+    public MarketDB getMarketDB() {
+        return marketDB;
     }
 }

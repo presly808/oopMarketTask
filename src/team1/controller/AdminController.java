@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class AdminController implements IAdminController {
 
-    public MarketDB marketDB;
+    private MarketDB marketDB;
 
     public AdminController(MarketDB marketDB) {
         this.marketDB = marketDB;
@@ -194,5 +194,9 @@ public class AdminController implements IAdminController {
             res.setPrice((Double) obj.get("price"));
             marketDB.getProducts().add(res);
         }
+    }
+
+    public MarketDB getMarketDB() {
+        return marketDB;
     }
 }

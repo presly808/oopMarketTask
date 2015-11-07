@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 public class SellerController implements ISellerController{
-    public MarketDB marketDB;
+    private MarketDB marketDB;
 
     public SellerController(MarketDB marketDB) {
         this.marketDB = marketDB;
@@ -33,5 +33,9 @@ public class SellerController implements ISellerController{
         int index = marketDB.getProducts().indexOf(tempProductForFind);
 
         return marketDB.getProducts().get(index);
+    }
+
+    public MarketDB getMarketDB() {
+        return marketDB;
     }
 }

@@ -34,7 +34,7 @@ public class SellerViewFrame extends JFrame {
 
     public SellerViewFrame(SellerController sellerController, Seller seller){
         this.sellerController = sellerController;
-        this.marketDB = sellerController.marketDB;
+        this.marketDB = sellerController.getMarketDB();
         this.seller = seller;
         setTitle("Seller Console");
         setSize(500, 600);
@@ -116,8 +116,8 @@ public class SellerViewFrame extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            int size = sellerController.marketDB.getProducts().size();
-            Product product = sellerController.marketDB.getProducts().get(random.nextInt(size));
+            int size = sellerController.getMarketDB().getProducts().size();
+            Product product = sellerController.getMarketDB().getProducts().get(random.nextInt(size));
             listOfBillProducts.addElement(product);
             totalMoney += product.getPrice();
             totalPrice.setText(String.format("Total: %.2f",totalMoney));
@@ -164,10 +164,10 @@ public class SellerViewFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             currentBill.setAmountPrice(totalMoney);
-            int size = sellerController.marketDB.getDayWish().size();
-            String wish = sellerController.marketDB.getDayWish().get(random.nextInt(size));
+            int size = sellerController.getMarketDB().getDayWish().size();
+            String wish = sellerController.getMarketDB().getDayWish().get(random.nextInt(size));
             currentBill.setDayWish(wish);
-            sellerController.marketDB.getBills().add(currentBill);
+            sellerController.getMarketDB().getBills().add(currentBill);
             billCounter++;
 
         }

@@ -29,7 +29,7 @@ public class LoginPassFrame extends JFrame {
 
     public LoginPassFrame(LoginPass loginPass) throws HeadlessException{
         this.loginPass = loginPass;
-        this.marketDB = loginPass.marketDB;
+        this.marketDB = loginPass.getMarketDB();
         try {
             loginPass.updateAdmins();
             loginPass.updateSellers();
