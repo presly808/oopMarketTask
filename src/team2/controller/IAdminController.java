@@ -14,6 +14,7 @@ public interface IAdminController {
     ArrayList<Product> getAll();
     Product findProductByName(String name);
     Product findProductByCode(String barCode);
+    int createUser(String login, String passw, String role);
 
 
 }

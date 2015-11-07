@@ -78,4 +78,15 @@ public class MarketDB {
         }
         return users.get(0); /// users[0] - always guest. default user.
     }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public User getUserByLogin(String login) {
+        for (int i = 0; i < users.size(); i++) {
+            if ( users.get(i).isLoginTheSame(login) ) return users.get(i);
+        }
+        return null;
+    }
 }

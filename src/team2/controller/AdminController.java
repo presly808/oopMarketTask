@@ -1,7 +1,8 @@
 package team2.controller;
 
-import team2.model.MarketDB;
-import team2.model.Product;
+import team2.helpers.UserHelper;
+import team2.model.*;
+
 import java.util.ArrayList;
 
 public class AdminController implements IAdminController {
@@ -45,5 +46,23 @@ public class AdminController implements IAdminController {
 
     public MarketDB getMarketDB() {
         return marketDB;
+    }
+
+    @Override
+    public int createUser(String login, String passw, String role) {
+        User newUser = null;
+        if ( ( login.length() < 1 ) || ( passw.length() < 1 ) ) return -3;
+        if ( role.equals("Guest") ) return -5;
+        if ( marketDB.getUserByLogin(login) != null ) return -4;
+        int newUserId = marketDB.getUsers().size();
+        if ( role.equals("Admin") ) {
+            newUser = new Admin(newUserId, login, passw);
+        } else if ( role.equals("Seller") ) {
+            newUser = new Seller(newUserId, login, passw);
+        }
+        marketDB.getUsers().add(newUser);
+        UserHelper.saveUsersDB(marketDB.getUsers());
+
+        return newUserId;
     }
 }

@@ -75,4 +75,8 @@ public class User implements Serializable{
     public void startView(MarketDB marketDB){
 
     }
+
+    public boolean isLoginTheSame(String login) {
+        return this.login.equals(login);
+    }
 }
