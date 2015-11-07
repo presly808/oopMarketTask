@@ -67,8 +67,15 @@ public class AdministratorView extends JFrame{
 
         JMenuItem delUser = new JMenuItem("Remove user");
         usersMenu.add(delUser);
+
         JMenuItem showAllUser = new JMenuItem("Show all users");
         usersMenu.add(showAllUser);
+        showAllUser.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                showAllUserMethod(frame);
+            }
+        });
+
         /////////
         menuBar.add(usersMenu);
 
@@ -117,8 +124,10 @@ public class AdministratorView extends JFrame{
                 String msg = "Unknown error.";
                 if ( newUserId == -5 ) {
                     msg = "You try to make guest. One guest already registred in system.";
-                } else if ( newUserId == -1 ) {
+                } else if ( newUserId == -4 ) {
                     msg = "The login you enter is already registered";
+                } else if ( newUserId == -3 ) {
+                    msg = "The login or password will have lenght more than 1 character.";
                 } else if ( newUserId > 0 ) {
                     msg = "User ID: " + newUserId + " login: " + login.getText() + " was registered successfully.";
                 }
@@ -137,6 +146,12 @@ public class AdministratorView extends JFrame{
         frame.setLocationRelativeTo(null);
 
         System.out.println("adding new user");
+    }
+
+    private void showAllUserMethod(JFrame frame) {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+       //System.out.println(frame.getContentPane().getComponents().toString());
     }
 
 }
