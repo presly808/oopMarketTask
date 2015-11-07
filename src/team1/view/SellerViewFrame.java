@@ -26,6 +26,7 @@ public class SellerViewFrame extends JFrame {
     private Seller seller;
     private Random random = new Random();
     private Bill currentBill;
+    private int billCounter=1;
     private double totalMoney;
     private JLabel totalPrice = new JLabel("Total: 0.0");
 
@@ -90,8 +91,23 @@ public class SellerViewFrame extends JFrame {
         info.add(totalPrice);
         info.add(infoRight);
 
-
         getContentPane().add(productList);
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                scanProduct.setEnabled(false);
+                undoButton.setEnabled(false);
+            }
+        });
+
+        newBill.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                scanProduct.setEnabled(true);
+                undoButton.setEnabled(true);
+            }
+        });
 
     }
 
@@ -111,6 +127,8 @@ public class SellerViewFrame extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            currentBill = new Bill(billCounter,seller);
+            currentBill.setDate(new Date());
             totalMoney = 0;
             totalPrice.setText("Total: 0.0");
             listOfBillProducts.removeAllElements();
@@ -137,6 +155,17 @@ public class SellerViewFrame extends JFrame {
                 }
 
             }
+        }
+    }
+
+    private class SaveBillListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            currentBill.setAmountPrice(totalMoney);
+            sellerController.marketDB.getBills().add(currentBill);
+            billCounter++;
+
         }
     }
 }
