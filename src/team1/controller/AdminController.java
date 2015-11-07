@@ -55,12 +55,9 @@ public class AdminController implements IAdminController {
         users.addAll(admins);
         users.addAll(sellers);
 
-   //System.arraycopy(admins, 0, users, 0, admins.size());
-   //System.arraycopy(sellers, 0, users, admins.size(), sellers.size());
-//
-       return users;
 
-       //return  admins;
+      return users;
+
     }
 
     @Override
