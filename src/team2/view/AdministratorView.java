@@ -104,6 +104,9 @@ public class AdministratorView extends JFrame{
         JTextField password = new JTextField("",20);
         JTextArea textArea = new JTextArea(10, 20);
 
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
         JPanel content = new JPanel();
         content.setLayout(new GridLayout(8,1));
 
@@ -151,7 +154,7 @@ public class AdministratorView extends JFrame{
     private void showAllUserMethod(JFrame frame) {
         frame.getContentPane().removeAll();
         frame.repaint();
-       //System.out.println(frame.getContentPane().getComponents().toString());
+
     }
 
 }
