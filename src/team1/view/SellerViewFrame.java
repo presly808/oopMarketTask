@@ -5,6 +5,7 @@ package team1.view;
  */
 
 import team1.controller.SellerController;
+import team1.model.Bill;
 import team1.model.MarketDB;
 import team1.model.Product;
 import team1.model.Seller;
@@ -24,6 +25,9 @@ public class SellerViewFrame extends JFrame {
     private JList products = new JList(listOfBillProducts);
     private Seller seller;
     private Random random = new Random();
+    private Bill currentBill;
+    private double totalMoney;
+    private JLabel totalPrice = new JLabel("Total: 0.0");
 
     public SellerViewFrame(SellerController sellerController, Seller seller){
         this.sellerController = sellerController;
@@ -66,6 +70,7 @@ public class SellerViewFrame extends JFrame {
         actionButtons.add(saveButton);
 
         scanProduct.addActionListener(new ScanProductListener());
+        newBill.addActionListener(new NewBillListener());
 
         JLabel userIcon = new JLabel(new ImageIcon("C:\\login.png"));
         JLabel userName = new JLabel(seller.getLogin());
@@ -81,6 +86,7 @@ public class SellerViewFrame extends JFrame {
         infoRight.add(currentDate);
         infoRight.add(timeIcon);
         info.add(infoLeft);
+        info.add(totalPrice);
         info.add(infoRight);
 
 
@@ -88,13 +94,25 @@ public class SellerViewFrame extends JFrame {
 
     }
 
-    private class ScanProductListener implements ActionListener {
+    private class ScanProductListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
             int size = sellerController.marketDB.getProducts().size();
             Product product = sellerController.marketDB.getProducts().get(random.nextInt(size));
             listOfBillProducts.addElement(product);
+            totalMoney += product.getPrice();
+            totalPrice.setText(String.format("Total: %.2f",totalMoney));
+        }
+    }
+
+    private class NewBillListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            totalMoney = 0;
+            totalPrice.setText("Total: 0.0");
+            listOfBillProducts.removeAllElements();
         }
     }
 }
