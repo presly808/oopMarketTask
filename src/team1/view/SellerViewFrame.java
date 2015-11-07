@@ -123,6 +123,19 @@ public class SellerViewFrame extends JFrame {
             if (products.isSelectionEmpty()){
                 JFrame dialogFrame = new JFrame();
                 JOptionPane.showMessageDialog(dialogFrame, "Please select product to remove");
+            } else {
+                JFrame dialogFrame = new JFrame();
+                Object[] options = {"Yes","No"};
+                int n = JOptionPane.showOptionDialog(dialogFrame, "Are you sure you want to delete?","Confirmation",JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, options,
+                        options[0]);
+                if (n==0) {
+                    Product product = (Product) products.getSelectedValue();
+                    listOfBillProducts.removeElement(product);
+                    totalMoney -= product.getPrice();
+                    totalPrice.setText(String.format("Total: %.2f", totalMoney));
+                }
+
             }
         }
     }
