@@ -19,12 +19,6 @@ public class SellerFrame extends JFrame {
     Seller user;
     ISellerController iSellerController;
 
-    private JTextArea fileContentArea;
-    private JButton scanButton;
-    private JButton PaymentButton;
-    private JButton eraseButton;
-    private JButton cancelButton;
-    private JButton signOutButton;
 
     public SellerFrame(Seller user, ISellerController iSellerController){
 
