@@ -12,9 +12,13 @@ public class MarketDB {
     private ArrayList<Admin> admins = new ArrayList<>();
     private ArrayList<Seller> sellers = new ArrayList<>();
     private ArrayList<Bill> bills = new ArrayList<>();
+    private ArrayList<String> dayWish = new ArrayList<>();
     private double amountMoney;
 
     public MarketDB() {
+        dayWish.add("Keep calm and learn JAVA");
+        dayWish.add("My God, have you heard about Dependency Inversion at all?");
+        dayWish.add("Did you learn MVC pattern already?");
     }
 
     public ArrayList<Product> getProducts() {
@@ -55,5 +59,9 @@ public class MarketDB {
 
     public void setAmountMoney(double amountMoney) {
         this.amountMoney = amountMoney;
+    }
+
+    public ArrayList<String> getDayWish() {
+        return dayWish;
     }
 }

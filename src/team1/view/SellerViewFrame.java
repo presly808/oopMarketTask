@@ -24,10 +24,10 @@ public class SellerViewFrame extends JFrame {
     private DefaultListModel listOfBillProducts = new DefaultListModel();
     private JList products = new JList(listOfBillProducts);
     private Seller seller;
-    private Random random = new Random();
-    private Bill currentBill;
     private int billCounter=1;
-    private double totalMoney;
+    private Random random = new Random();
+    private Bill currentBill = new Bill(billCounter,seller);
+   private double totalMoney;
     private JLabel totalPrice = new JLabel("Total: 0.0");
 
     public SellerViewFrame(SellerController sellerController, Seller seller){
@@ -163,6 +163,9 @@ public class SellerViewFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             currentBill.setAmountPrice(totalMoney);
+            int size = sellerController.marketDB.getDayWish().size();
+            String wish = sellerController.marketDB.getDayWish().get(random.nextInt(size));
+            currentBill.setDayWish(wish);
             sellerController.marketDB.getBills().add(currentBill);
             billCounter++;
 
