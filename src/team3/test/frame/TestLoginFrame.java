@@ -1,4 +1,4 @@
-package team3.test_frame;
+package team3.test.frame;
 
 import team3.frame.LoginFrame;
 import team3.model.MarketDB;

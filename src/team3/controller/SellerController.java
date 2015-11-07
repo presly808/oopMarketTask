@@ -88,14 +88,6 @@ public class SellerController implements ISellerController {
 
                 marketDB.getProducts().remove(tempProductToDelete);
 
-//            for (int i = 0; i < marketDB.getProducts().size(); i++) {
-//
-//                if (marketDB.getProducts().get(i) == tempProductToDelete){
-//                    marketDB.getProducts().remove(i);
-//                }
-//
-//            }
-
             }
 
             marketDB.getBills().add(bill);

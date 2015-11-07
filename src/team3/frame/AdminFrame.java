@@ -3,6 +3,7 @@ package team3.frame;
 import org.omg.IOP.ExceptionDetailMessage;
 import team3.controller.AdminController;
 import team3.controller.IAdminController;
+import team3.exception.NoProductFoundException;
 import team3.model.Admin;
 import team3.model.MarketDB;
 import team3.model.Product;
@@ -273,15 +274,16 @@ public class AdminFrame extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-                    Product found = iAdminController.findProductByCode(barCode.getText());
-
-                    if (found == null){
-                        JOptionPane.showMessageDialog(AdminFrame.this, "This product (barcode) doesn't exist in market database.", "ERROR", JOptionPane.ERROR_MESSAGE);
-
-                    } else {
+                    Product found = null;
+                    try {
+                        found = iAdminController.findProductByCode(barCode.getText());
                         JOptionPane.showConfirmDialog(AdminFrame.this, found.toString(), "SUCCESS", JOptionPane.DEFAULT_OPTION);
-
+                    } catch (NoProductFoundException e1) {
+                        JOptionPane.showMessageDialog(AdminFrame.this,
+                                "This product (barcode) doesn't exist in market database.", "ERROR",
+                                JOptionPane.ERROR_MESSAGE);
                     }
+
                 }
             });
 

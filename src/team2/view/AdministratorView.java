@@ -1,5 +1,7 @@
 package team2.view;
 
+import static team2.view.CodeContainer.*;
+
 import team2.controller.AdminController;
 import team2.model.Guest;
 
@@ -12,6 +14,7 @@ import java.awt.event.ActionListener;
  * Created by dima on 06.11.2015.
  */
 public class AdministratorView extends JFrame{
+
 
     private AdminController adminController;
 
@@ -121,15 +124,16 @@ public class AdministratorView extends JFrame{
 
         JButton createButton = new JButton("Create");
         content.add(createButton);
+
         createButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int newUserId = adminController.createUser(login.getText(), password.getText(), roles.getSelectedItem().toString());
                 String msg = "Unknown error.";
-                if ( newUserId == -5 ) {
+                if ( newUserId == TRY_CREATE_GUEST_CODE) {
                     msg = "You try to make guest. One guest already registred in system.";
-                } else if ( newUserId == -4 ) {
+                } else if ( newUserId == LOGIN_BUSY_CODE) {
                     msg = "The login you enter is already registered";
-                } else if ( newUserId == -3 ) {
+                } else if ( newUserId == FIELD_EMPTY_CODE) {
                     msg = "The login or password will have lenght more than 1 character.";
                 } else if ( newUserId > 0 ) {
                     msg = "User ID: " + newUserId + " login: " + login.getText() + " was registered successfully.";

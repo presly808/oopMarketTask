@@ -1,5 +1,6 @@
 package team3.controller;
 
+import team3.exception.NoProductFoundException;
 import team3.model.MarketDB;
 import team3.model.Product;
 
@@ -53,7 +54,7 @@ public class AdminController implements IAdminController {
     }
 
     @Override
-    public Product findProductByCode(String barCode) {
+    public Product findProductByCode(String barCode) throws NoProductFoundException {
         Product tempProductForFind = new Product();
         tempProductForFind.setBarCode(barCode);
         int index = marketDB.getProducts().indexOf(tempProductForFind);
@@ -61,7 +62,8 @@ public class AdminController implements IAdminController {
         if (index != -1){
             return marketDB.getProducts().get(index);
         }
-        return null;
+
+        throw new NoProductFoundException("No product with barcode " + barCode);
 
     }
 

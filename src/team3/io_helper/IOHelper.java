@@ -1,4 +1,4 @@
-package team3.IOHelper;
+package team3.io_helper;
 
 
 import java.io.*;

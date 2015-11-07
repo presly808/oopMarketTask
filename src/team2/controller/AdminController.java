@@ -1,5 +1,7 @@
 package team2.controller;
 
+import static team2.view.CodeContainer.*;
+
 import team2.helpers.UserHelper;
 import team2.model.*;
 
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 public class AdminController implements IAdminController {
 
     private MarketDB marketDB;
+
     public AdminController(MarketDB marketDB) {
         this.marketDB = marketDB;
     }
@@ -51,15 +54,21 @@ public class AdminController implements IAdminController {
     @Override
     public int createUser(String login, String passw, String role) {
         User newUser = null;
-        if ( ( login.length() < 1 ) || ( passw.length() < 1 ) ) return -3;
-        if ( role.equals("Guest") ) return -5;
-        if ( marketDB.getUserByLogin(login) != null ) return -4;
+
+        if ((login.isEmpty()) || (passw.isEmpty())) return FIELD_EMPTY_CODE;
+
+        if (role.equals("Guest")) return TRY_CREATE_GUEST_CODE;
+
+        if (marketDB.getUserByLogin(login) != null) return FIELD_EMPTY_CODE;
+
         int newUserId = marketDB.getUsers().size();
-        if ( role.equals("Admin") ) {
+
+        if (role.equals("Admin")) {
             newUser = new Admin(newUserId, login, passw);
-        } else if ( role.equals("Seller") ) {
+        } else if (role.equals("Seller")) {
             newUser = new Seller(newUserId, login, passw);
         }
+
         marketDB.getUsers().add(newUser);
         UserHelper.saveUsersDB(marketDB.getUsers());
 

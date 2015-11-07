@@ -1,4 +1,4 @@
-package team1.Authentication;
+package team1.controller;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,16 +13,27 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class LoginPass {
+// TODO set full coorect name
+public class LoginWindowController {
+
+    public static final String ADMINS_JSON_PATH = "C:\\AdminUsers.json";
+    public static final String SELLER_JSON_PATH = "C:\\SellerUsers.json";
+
     private MarketDB marketDB;
+
     private LoginController loginController;
     private String login;
     private String password;
+
     private User user;
 
-    public LoginPass(LoginController loginController) {
+    private JSONParser jsonParser;
+
+    public LoginWindowController(LoginController loginController) {
         this.loginController = loginController;
         this.marketDB = loginController.marketDB;
+
+        jsonParser = new JSONParser();
     }
 
     public User loginFrame(String login, String password){
@@ -41,50 +52,64 @@ public class LoginPass {
         }
         return user;
     }
+
     public void updateAdmins() throws ParseException {
-        String path = "C:\\AdminUsers.json";
-        File adminFile = new File(path);
+        File adminFile = new File(ADMINS_JSON_PATH);
         Scanner sc = null;
+
         try {
             sc = new Scanner(adminFile);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
         while (sc.hasNext()) {
             String line = sc.nextLine();
-            JSONParser jsonParser = new JSONParser();
+
             JSONObject obj = (JSONObject) jsonParser.parse(line);
-            Admin res = new Admin();
-            res.setId((int) (long) obj.get("id"));
-            res.setLogin((String) obj.get("login"));
-            res.setPass((String) obj.get("pass"));
+
+            Admin res = convertAdmin(obj);
             //System.out.printf("%d %s %s\n", res.getId(), res.getLogin(), res.getPass());
             marketDB.getAdmins().add(res);
         }
 
     }
 
+    private Admin convertAdmin(JSONObject obj) {
+        Admin res = new Admin();
+        res.setId((int) (long) obj.get("id"));
+        res.setLogin((String) obj.get("login"));
+        res.setPass((String) obj.get("pass"));
+        return res;
+    }
+
     public void updateSellers() throws ParseException {
-        String path = "C:\\SellerUsers.json";
-        File sellerFile = new File(path);
+        File sellerFile = new File(SELLER_JSON_PATH);
         Scanner sc = null;
         try {
             sc = new Scanner(sellerFile);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
         while (sc.hasNext()) {
             String line = sc.nextLine();
-            JSONParser jsonParser = new JSONParser();
+
             JSONObject obj = (JSONObject) jsonParser.parse(line);
-            Seller res = new Seller();
-            res.setId((int) (long) obj.get("id"));
-            res.setLogin((String) obj.get("login"));
-            res.setPass((String) obj.get("pass"));
+
+            Seller res = convertSeller(obj);
             //System.out.printf("%d %s %s\n", res.getId(), res.getLogin(), res.getPass());
             marketDB.getSellers().add(res);
         }
 
+    }
+
+    private Seller convertSeller(JSONObject obj) {
+        Seller res = new Seller();
+        res.setId((int) (long) obj.get("id"));
+        res.setLogin((String) obj.get("login"));
+        res.setPass((String) obj.get("pass"));
+        return res;
     }
 
     public User getUser() {

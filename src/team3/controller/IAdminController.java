@@ -1,5 +1,6 @@
 package team3.controller;
 
+import team3.exception.NoProductFoundException;
 import team3.model.Product;
 
 import java.util.ArrayList;
@@ -10,12 +11,16 @@ import java.util.ArrayList;
 public interface IAdminController {
 
     boolean addProduct(String barCode, String model, double price);
-    boolean deleteProduct(String barCode);
-    ArrayList<Product> getAll();
-    String getAllProductsString();
-    Product findProductByName(String name);
-    Product findProductByCode(String barCode);
 
+    boolean deleteProduct(String barCode);
+
+    ArrayList<Product> getAll();
+
+    String getAllProductsString();
+
+    Product findProductByName(String name);
+
+    Product findProductByCode(String barCode) throws NoProductFoundException;
 
 
 }

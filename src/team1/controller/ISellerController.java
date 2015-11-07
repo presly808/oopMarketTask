@@ -10,7 +10,9 @@ import java.util.ArrayList;
 public interface ISellerController {
 
     ArrayList<Product> getAll();
+
     Product findProductByName(String name);
+
     Product findProductByCode(String barCode);
 
 

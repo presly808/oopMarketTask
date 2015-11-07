@@ -14,9 +14,9 @@ public class ShowProductsList {
     public void showProducts(ArrayList<Product> prodList){
         ShowFrameProduct frameProduct = new ShowFrameProduct();
         frameProduct.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameProduct.show();
 
         String[] columnNames = {"barCode","model","price"};
+
         String[][] prod = {
                 {"barCode1","model1","price1"},
                 {"barCode2","model2","price2"},

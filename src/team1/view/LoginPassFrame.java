@@ -1,8 +1,9 @@
-package team1.Authentication;
+package team1.view;
 
 import org.json.simple.parser.ParseException;
 import team1.controller.AdminController;
 import team1.controller.LoginController;
+import team1.controller.LoginWindowController;
 import team1.controller.SellerController;
 import team1.model.Admin;
 import team1.model.MarketDB;
@@ -20,22 +21,28 @@ import java.awt.event.ActionListener;
  * Created by bizianov on 01.11.2015.
  */
 public class LoginPassFrame extends JFrame {
+
     private MarketDB marketDB;
-    private LoginPass loginPass;
-    private JTextField login;
-    private JTextField password;
-    private JLabel incorrectPass;
     private User user;
 
-    public LoginPassFrame(LoginPass loginPass) throws HeadlessException{
-        this.loginPass = loginPass;
-        this.marketDB = loginPass.getMarketDB();
+    private LoginWindowController loginWindowController;
+
+    private JTextField login;
+    private JTextField password;
+
+    private JLabel incorrectPass;
+
+    public LoginPassFrame(LoginWindowController loginWindowController) throws HeadlessException{
+        this.loginWindowController = loginWindowController;
+        this.marketDB = loginWindowController.getMarketDB();
+
         try {
-            loginPass.updateAdmins();
-            loginPass.updateSellers();
+            loginWindowController.updateAdmins();
+            loginWindowController.updateSellers();
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         setTitle("login/pass");
         setSize(350, 125);
         setLocationRelativeTo(null);
@@ -59,7 +66,9 @@ public class LoginPassFrame extends JFrame {
         okButton.setMnemonic('O');
         okButton.setToolTipText("press after typing login and password");
         okButton.addActionListener(new MyActionListener());
+
         getContentPane().add(okButton);
+
         incorrectPass = new JLabel("",SwingConstants.CENTER);
         getContentPane().add(incorrectPass);
     }
@@ -68,8 +77,8 @@ public class LoginPassFrame extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            LoginPass loginPass = new LoginPass(new LoginController(marketDB));
-            User user = loginPass.loginFrame(login.getText(),password.getText());
+            LoginWindowController loginWindowController = new LoginWindowController(new LoginController(marketDB));
+            User user = loginWindowController.loginFrame(login.getText(),password.getText());
             if (user instanceof Admin){
                 AdminViewFrame adminFrame = new AdminViewFrame(new AdminController(marketDB));
                 setVisible(false);

@@ -1,6 +1,6 @@
-package team3.other_tests_and_examples;
+package team3.test.common;
 
-import team3.IOHelper.IOHelper;
+import team3.io_helper.IOHelper;
 
 import javax.swing.*;
 import java.awt.*;

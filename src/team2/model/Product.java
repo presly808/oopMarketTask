@@ -11,7 +11,6 @@ public class Product {
     private String barCode;
     private String model;
     private double price;
-    private ArrayList<Product> productsList;
 
     public Product() {
     }

@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class LoginController {
+
     public MarketDB marketDB;
 
     public LoginController(MarketDB marketDB) {

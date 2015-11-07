@@ -13,12 +13,17 @@ public interface IManagerController {
 
 
     ArrayList<Admin> getAdmins();
+
     ArrayList<Seller> getSellers();
+
     String getAdminsString();
+
     String getSellersString();
 
-    boolean addAdmin (int id, String login, String pass);
-    boolean addSeller (int id, String login, String pass);
-    boolean deleteUser (int id);
+    boolean addAdmin(int id, String login, String pass);
+
+    boolean addSeller(int id, String login, String pass);
+
+    boolean deleteUser(int id);
 
 }

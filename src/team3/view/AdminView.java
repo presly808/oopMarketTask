@@ -1,6 +1,7 @@
 package team3.view;
 
 import team3.controller.IAdminController;
+import team3.exception.NoProductFoundException;
 import team3.model.Admin;
 import team3.model.Product;
 
@@ -76,7 +77,12 @@ public class AdminView {
         System.out.println("Input bar code");
         String barCode = sc.next();
 
-        Product found = adminController.findProductByCode(barCode);
+        Product found = null;
+        try {
+            found = adminController.findProductByCode(barCode);
+        } catch (NoProductFoundException e) {
+            e.printStackTrace();
+        }
 
         System.out.println(found);
     }

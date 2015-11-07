@@ -1,6 +1,5 @@
 package team1.view;
 
-import team1.Authentication.LoginPass;
 import team1.controller.SellerController;
 import team1.model.Product;
 import team1.model.Seller;
