@@ -1,5 +1,6 @@
 package team1.view;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import team1.controller.AdminController;
 import team1.model.Admin;
@@ -12,6 +13,9 @@ import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
@@ -188,12 +192,31 @@ public class AdminViewFrame extends JFrame{
                 public void actionPerformed(ActionEvent e) {
                     productListModel.addElement(adminController.addProduct(barCode.getText(), model.getText(), Double.parseDouble(price.getText())));
                     addJFrame.setVisible(false);
+                    addToProductFile(new Product(barCode.getText(), model.getText(),Double.parseDouble(price.getText())));
                  }
             });
 
             addJFrame.getContentPane().add(addButton);
             addJFrame.setVisible(true);
 
+        }
+
+        public void addToProductFile(Product product){
+            String path = "C:\\ProductFile.json";
+            File jsonProductFile = new File(path);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("barcode", product.getBarCode());
+            jsonObject.put("model", product.getModel());
+            jsonObject.put("price", product.getPrice());
+            try {
+                FileWriter fileWriter = new FileWriter(jsonProductFile, true);
+                fileWriter.write(jsonObject.toString());
+                fileWriter.append("\n");
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -287,7 +310,7 @@ public class AdminViewFrame extends JFrame{
             mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
             JPanel jPanel = new JPanel();
-            jPanel.setLayout(new GridLayout(1,2));
+            jPanel.setLayout(new GridLayout(1, 2));
 
             jPanel.add(new JLabel("barcode:"));
             jPanel.add(barCode);
