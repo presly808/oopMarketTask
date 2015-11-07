@@ -8,7 +8,7 @@ import team3.model.Seller;
  */
 public interface ISellerController {
 
-    Bill createBill(Seller seller, String date);
+    Bill createBill(Seller seller);
     boolean scanProduct(Bill bill, String barCode);
     boolean eraseProduct(Bill bill, String barCode);
     String scanProductInfo(String barCode);

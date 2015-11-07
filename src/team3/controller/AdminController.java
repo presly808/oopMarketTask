@@ -64,4 +64,12 @@ public class AdminController implements IAdminController {
         return null;
 
     }
+
+    public MarketDB getMarketDB() {
+        return marketDB;
+    }
+
+    public void setMarketDB(MarketDB marketDB) {
+        this.marketDB = marketDB;
+    }
 }

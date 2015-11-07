@@ -1,8 +1,7 @@
 package team3.test_frame;
 
-import team3.frame.SellerFrame;
-
 import team3.controller.SellerController;
+import team3.frame.SellerFrame;
 import team3.model.MarketDB;
 import team3.model.Seller;
 

@@ -1,6 +1,5 @@
 package team3.frame;
 
-import team1.model.*;
 import team3.controller.*;
 import team3.model.*;
 import team3.model.Admin;
@@ -12,8 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 
 /**
  * Created by 1 on 01.11.2015.

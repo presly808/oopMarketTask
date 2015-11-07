@@ -5,6 +5,9 @@ import team3.model.MarketDB;
 import team3.model.Product;
 import team3.model.Seller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by 1 on 30.10.2015.
  */
@@ -17,10 +20,10 @@ public class SellerController implements ISellerController {
     }
 
     @Override
-    public Bill createBill(Seller seller, String date) {
+    public Bill createBill(Seller seller) {
 
 
-        Bill bill = new Bill(seller, date);
+        Bill bill = new Bill(seller, new SimpleDateFormat().format(new Date()));
 
         return bill;
     }
@@ -108,5 +111,13 @@ public class SellerController implements ISellerController {
     @Override
     public void showBill(Bill bill) {
         System.out.println(bill.toString());
+    }
+
+    public MarketDB getMarketDB() {
+        return marketDB;
+    }
+
+    public void setMarketDB(MarketDB marketDB) {
+        this.marketDB = marketDB;
     }
 }

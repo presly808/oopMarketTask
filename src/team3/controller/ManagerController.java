@@ -92,7 +92,7 @@ public class ManagerController implements IManagerController{
             }
         }
 
-        return marketDB.getUsers().add(new Admin(id,login,pass));
+        return marketDB.getUsers().add(new Seller(id,login,pass));
     }
 
     @Override
@@ -106,5 +106,13 @@ public class ManagerController implements IManagerController{
 
         return false;
 
+    }
+
+    public MarketDB getMarketDB() {
+        return marketDB;
+    }
+
+    public void setMarketDB(MarketDB marketDB) {
+        this.marketDB = marketDB;
     }
 }

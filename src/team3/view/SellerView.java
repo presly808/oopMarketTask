@@ -51,7 +51,8 @@ public class SellerView {
 
     private void serveCustomerMenu(Scanner sc) {
 
-        Bill bill = sellerController.createBill(seller, new SimpleDateFormat().format(new Date()));
+        //Bill bill = sellerController.createBill(seller, new SimpleDateFormat().format(new Date()));
+        Bill bill = sellerController.createBill(seller);
 
         int choice = -1;
         while (choice != 5) {

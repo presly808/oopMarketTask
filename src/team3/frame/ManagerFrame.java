@@ -2,6 +2,7 @@ package team3.frame;
 
 import com.sun.deploy.panel.JSmartTextArea;
 import team3.controller.IManagerController;
+import team3.controller.ManagerController;
 import team3.model.Manager;
 
 import javax.swing.*;
@@ -54,21 +55,23 @@ public class ManagerFrame extends JFrame {
 
         JSplitPane paneWithLists = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         paneWithLists.setAutoscrolls(true);
-        paneWithLists.setDividerLocation((int) this.getSize().getWidth() / 2);
-        paneWithLists.add(adminsListArea);
-        paneWithLists.add(sellersListArea);
+        paneWithLists.setDividerLocation((int) this.getSize().getWidth() / 2 - 15);
+        paneWithLists.add(scrollPaneAdmins);
+        paneWithLists.add(scrollPaneSellers);
 
 
         JPanel southButtonsPanel = new JPanel(new GridLayout(1,3));
 
-        JButton addButton = new JButton("Add user");
+        JButton addButton = new JButton("Add");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                new AddUserFrame();
 
             }
         });
+
 
         JButton eraseButton = new JButton("Fire");
         eraseButton.addActionListener(new ActionListener() {
@@ -86,6 +89,8 @@ public class ManagerFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                dispose();
+                new LoginFrame(((ManagerController) iManagerController).getMarketDB());
 
             }
         });
@@ -107,6 +112,9 @@ public class ManagerFrame extends JFrame {
         adminsListArea.setText(iManagerController.getAdminsString());
         sellersListArea.setText(iManagerController.getSellersString());
     }
+
+
+
 
 
     private class DeleteUserFrame extends JFrame {
@@ -162,6 +170,112 @@ public class ManagerFrame extends JFrame {
             getContentPane().add(deleteUser, BorderLayout.SOUTH);
 
 
+        }
+    }
+
+
+    private class AddUserFrame extends JFrame {
+
+
+        public AddUserFrame() {
+            setLocationRelativeTo(ManagerFrame.this);
+            setSize(250, 175);
+            setTitle("User adding");
+            init();
+            setVisible(true);
+            setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        }
+
+        private void init() {
+
+            JLabel idLog = new JLabel("ID: ");
+            JLabel loginLog = new JLabel("Login: ");
+            JLabel passLog = new JLabel("Password: ");
+
+            JTextField id = new JTextField();
+            JTextField login = new JTextField();
+            JTextField pass = new JTextField();
+
+            JRadioButton isAdminButton = new JRadioButton("Admin");
+            JRadioButton isSellerButton = new JRadioButton("Seller");
+
+
+            isAdminButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    isSellerButton.setSelected(false);
+                }
+            });
+
+            isSellerButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    isAdminButton.setSelected(false);
+                }
+            });
+
+
+            JButton addUser = new JButton("Register");
+            addUser.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+
+                    try {
+                        int userID = Integer.valueOf(id.getText());
+                        String userLogin = login.getText();
+                        String userPass = pass.getText();
+
+                        if (isAdminButton.isSelected()){
+
+                            boolean res = iManagerController.addAdmin(userID, userLogin, userPass);
+                            if (res){
+                                JOptionPane.showConfirmDialog(ManagerFrame.this, "Registered", "SUCCESS", JOptionPane.DEFAULT_OPTION);
+                            } else if (!res) {
+                                JOptionPane.showMessageDialog(ManagerFrame.this, "Such user's ID is already used", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            }
+
+                        } else if (isSellerButton.isSelected()){
+
+                            boolean res = iManagerController.addSeller(userID, userLogin, userPass);
+                            if (res){
+                                JOptionPane.showConfirmDialog(ManagerFrame.this, "Registered", "SUCCESS", JOptionPane.DEFAULT_OPTION);
+                            } else if (!res) {
+                                JOptionPane.showMessageDialog(ManagerFrame.this, "Such user's ID is already used", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(ManagerFrame.this, "Choose type of an account", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                        refreshInfo();
+
+                    } catch (NumberFormatException e1) {
+
+                    }
+
+
+
+                }
+            });
+
+            JPanel centreInputPanel = new JPanel(new GridLayout(3,2));
+
+            centreInputPanel.add(idLog);
+            centreInputPanel.add(id);
+            centreInputPanel.add(loginLog);
+            centreInputPanel.add(login);
+            centreInputPanel.add(passLog);
+            centreInputPanel.add(pass);
+
+            JPanel northChoicePanel = new JPanel(new GridLayout(1,2));
+            northChoicePanel.add(isAdminButton);
+            northChoicePanel.add(isSellerButton);
+
+            getContentPane().add(northChoicePanel, BorderLayout.NORTH);
+            getContentPane().add(centreInputPanel, BorderLayout.CENTER);
+            getContentPane().add(addUser, BorderLayout.SOUTH);
         }
     }
 }

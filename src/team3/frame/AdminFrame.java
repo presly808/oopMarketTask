@@ -1,6 +1,7 @@
 package team3.frame;
 
 import org.omg.IOP.ExceptionDetailMessage;
+import team3.controller.AdminController;
 import team3.controller.IAdminController;
 import team3.model.Admin;
 import team3.model.MarketDB;
@@ -20,6 +21,7 @@ public class AdminFrame extends JFrame {
 
     private Admin user;
     private IAdminController iAdminController;
+
     private JTextArea marketProductsListArea;
     private JButton addButton;
     private JScrollPane scrollPaneList;
@@ -89,6 +91,8 @@ public class AdminFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
 
+                dispose();
+                new LoginFrame(((AdminController) iAdminController).getMarketDB());
             }
         });
 
