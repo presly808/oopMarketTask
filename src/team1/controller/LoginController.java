@@ -1,6 +1,7 @@
 package team1.controller;
 
 
+import team1.constant.ProjectConstants;
 import team1.model.Admin;
 import team1.model.MarketDB;
 import team1.model.Seller;
@@ -14,6 +15,10 @@ import java.util.Scanner;
 
 public class LoginController {
 
+    public static final String ADMIN_USERS_JSON = ProjectConstants.RESOURCES_JSON_PATH +
+            "/AdminUsers.json";
+    public static final String SELLER_USERS_JSON = ProjectConstants.RESOURCES_JSON_PATH +
+            "/SellerUsers.json";
     public MarketDB marketDB;
 
     public LoginController(MarketDB marketDB) {
@@ -21,7 +26,7 @@ public class LoginController {
     }
 
     public void updateAdmins() throws ParseException {
-        String path = "C:\\AdminUsers.json";
+        String path = ADMIN_USERS_JSON;
         File adminFile = new File(path);
         Scanner sc = null;
         try {
@@ -44,7 +49,7 @@ public class LoginController {
     }
 
     public void updateSellers() throws ParseException {
-        String path = "C:\\SellerUsers.json";
+        String path = SELLER_USERS_JSON;
         File sellerFile = new File(path);
         Scanner sc = null;
         try {

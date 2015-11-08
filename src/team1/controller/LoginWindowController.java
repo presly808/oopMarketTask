@@ -1,5 +1,7 @@
 package team1.controller;
 
+import static team1.constant.ProjectConstants.*;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -16,8 +18,9 @@ import java.util.Scanner;
 // TODO set full coorect name
 public class LoginWindowController {
 
-    public static final String ADMINS_JSON_PATH = "C:\\AdminUsers.json";
-    public static final String SELLER_JSON_PATH = "C:\\SellerUsers.json";
+
+    public static final String ADMINS_JSON_PATH = RESOURCES_JSON_PATH + "/AdminUsers.json";
+    public static final String SELLER_JSON_PATH = RESOURCES_JSON_PATH + "/SellerUsers.json";
 
     private MarketDB marketDB;
 

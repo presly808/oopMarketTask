@@ -3,6 +3,7 @@ package team1.view;
 /**
  * Created by bizianov on 02.11.2015.
  */
+import static team1.constant.ProjectConstants.*;
 
 import team1.controller.SellerController;
 import team1.model.Bill;
@@ -19,18 +20,30 @@ import java.util.Date;
 import java.util.Random;
 
 public class SellerViewFrame extends JFrame {
+
+    public static final String SRC_TEAM1_IMAGES_ADD_PNG = RESOURCE_IMG_PATH + "/add.png";
+    public static final String SRC_TEAM1_IMAGES_UNDO1_PNG = RESOURCE_IMG_PATH + "/undo1.png";
+    public static final String SRC_TEAM1_IMAGES_NEW_PNG = RESOURCE_IMG_PATH + "/new.png";
+    public static final String SRC_TEAM1_IMAGES_SAVE_PNG = RESOURCE_IMG_PATH + "/save.png";
+    public static final String SRC_TEAM1_IMAGES_LOGIN_PNG = RESOURCE_IMG_PATH + "/login.png";
+    public static final String SRC_TEAM1_IMAGES_DATE_PNG = RESOURCE_IMG_PATH + "/date.png";
+
+
     private SellerController sellerController;
     private MarketDB marketDB;
+
     private DefaultListModel listOfBillProducts = new DefaultListModel();
     private JList products = new JList(listOfBillProducts);
+
     private Seller seller;
     private int billCounter=1;
     private Random random = new Random();
     private Bill currentBill = new Bill(billCounter,seller);
     private double totalMoney;
+
     private JLabel totalPrice = new JLabel("Total: 0.0");
-    private JButton scanProduct = new JButton(new ImageIcon("src\\team1\\images\\add.png"));
-    private JButton undoButton = new JButton(new ImageIcon("src\\team1\\images\\undo1.png"));
+    private JButton scanProduct = new JButton(new ImageIcon(SRC_TEAM1_IMAGES_ADD_PNG));
+    private JButton undoButton = new JButton(new ImageIcon(SRC_TEAM1_IMAGES_UNDO1_PNG));
 
     public SellerViewFrame(SellerController sellerController, Seller seller){
         this.sellerController = sellerController;
@@ -59,9 +72,9 @@ public class SellerViewFrame extends JFrame {
         productList.add(actionButtons, BorderLayout.SOUTH);
         productList.add(new JScrollPane(products), BorderLayout.CENTER);
 
-        JButton newBill = new JButton(new ImageIcon("src\\team1\\images\\new.png"));
+        JButton newBill = new JButton(new ImageIcon(SRC_TEAM1_IMAGES_NEW_PNG));
 
-        JButton saveButton = new JButton(new ImageIcon("src\\team1\\images\\save.png"));
+        JButton saveButton = new JButton(new ImageIcon(SRC_TEAM1_IMAGES_SAVE_PNG));
         newBill.setBorder(BorderFactory.createTitledBorder("New"));
         scanProduct.setBorder(BorderFactory.createTitledBorder("Scan"));
         undoButton.setBorder(BorderFactory.createTitledBorder("Remove"));
@@ -75,11 +88,11 @@ public class SellerViewFrame extends JFrame {
         newBill.addActionListener(new NewBillListener());
         undoButton.addActionListener(new UndoListener());
 
-        JLabel userIcon = new JLabel(new ImageIcon("src\\team1\\images\\login.png"));
+        JLabel userIcon = new JLabel(new ImageIcon(SRC_TEAM1_IMAGES_LOGIN_PNG));
         JLabel userName = new JLabel(seller.getLogin());
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
         JLabel currentDate = new JLabel(sdf.format(new Date()));
-        JLabel timeIcon = new JLabel(new ImageIcon("src\\team1\\images\\date.png"));
+        JLabel timeIcon = new JLabel(new ImageIcon(SRC_TEAM1_IMAGES_DATE_PNG));
 
         info.setLayout(new GridLayout(1,2));
         infoLeft.setLayout(new FlowLayout(FlowLayout.LEFT));

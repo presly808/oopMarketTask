@@ -9,6 +9,7 @@ import team1.model.Admin;
 import team1.model.MarketDB;
 import team1.model.Seller;
 import team1.model.User;
+import team1.utils.LanguageResourceBundle;
 import team1.view.AdminViewFrame;
 import team1.view.SellerViewFrame;
 
@@ -43,7 +44,7 @@ public class LoginPassFrame extends JFrame {
             e.printStackTrace();
         }
 
-        setTitle("login/pass");
+        setTitle(LanguageResourceBundle.get("login.title"));
         setSize(350, 125);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
