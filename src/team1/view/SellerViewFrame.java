@@ -29,8 +29,8 @@ public class SellerViewFrame extends JFrame {
     private Bill currentBill = new Bill(billCounter,seller);
     private double totalMoney;
     private JLabel totalPrice = new JLabel("Total: 0.0");
-    private JButton scanProduct = new JButton(new ImageIcon("C:\\add.png"));
-    private JButton undoButton = new JButton(new ImageIcon("C:\\undo1.png"));
+    private JButton scanProduct = new JButton(new ImageIcon("src\\team1\\images\\add.png"));
+    private JButton undoButton = new JButton(new ImageIcon("src\\team1\\images\\undo1.png"));
 
     public SellerViewFrame(SellerController sellerController, Seller seller){
         this.sellerController = sellerController;
@@ -59,9 +59,9 @@ public class SellerViewFrame extends JFrame {
         productList.add(actionButtons, BorderLayout.SOUTH);
         productList.add(new JScrollPane(products), BorderLayout.CENTER);
 
-        JButton newBill = new JButton(new ImageIcon("C:\\new.png"));
+        JButton newBill = new JButton(new ImageIcon("src\\team1\\images\\new.png"));
 
-        JButton saveButton = new JButton(new ImageIcon("C:\\save.png"));
+        JButton saveButton = new JButton(new ImageIcon("src\\team1\\images\\save.png"));
         newBill.setBorder(BorderFactory.createTitledBorder("New"));
         scanProduct.setBorder(BorderFactory.createTitledBorder("Scan"));
         undoButton.setBorder(BorderFactory.createTitledBorder("Remove"));
@@ -75,11 +75,11 @@ public class SellerViewFrame extends JFrame {
         newBill.addActionListener(new NewBillListener());
         undoButton.addActionListener(new UndoListener());
 
-        JLabel userIcon = new JLabel(new ImageIcon("C:\\login.png"));
+        JLabel userIcon = new JLabel(new ImageIcon("src\\team1\\images\\login.png"));
         JLabel userName = new JLabel(seller.getLogin());
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
         JLabel currentDate = new JLabel(sdf.format(new Date()));
-        JLabel timeIcon = new JLabel(new ImageIcon("C:\\date.png"));
+        JLabel timeIcon = new JLabel(new ImageIcon("src\\team1\\images\\date.png"));
 
         info.setLayout(new GridLayout(1,2));
         infoLeft.setLayout(new FlowLayout(FlowLayout.LEFT));

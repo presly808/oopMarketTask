@@ -75,35 +75,35 @@ public class AdminViewFrame extends JFrame{
         buttonsPanel.setLayout(new GridLayout(1, 5, 5, 0));
         contentProducts.add(buttonsPanel, BorderLayout.SOUTH);
 
-        JButton showButton = new JButton(new ImageIcon("C:\\print.png"));
+        JButton showButton = new JButton(new ImageIcon("src\\team1\\images\\print.png"));
         showButton.setBorder(BorderFactory.createTitledBorder("Show all"));
         showButton.setMnemonic('S');
         showButton.setToolTipText("press to show all products");
         showButton.addActionListener(new showActionListener());
         buttonsPanel.add(showButton);
 
-        JButton addButton = new JButton(new ImageIcon("C:\\addProduct.png"));
+        JButton addButton = new JButton(new ImageIcon("src\\team1\\images\\addProduct.png"));
         addButton.setBorder(BorderFactory.createTitledBorder("Add"));
         addButton.setMnemonic('A');
         addButton.setToolTipText("press to add new product");
         addButton.addActionListener(new addActionListener());
         buttonsPanel.add(addButton);
 
-        JButton renameButton = new JButton(new ImageIcon("C:\\rename.png"));
+        JButton renameButton = new JButton(new ImageIcon("src\\team1\\images\\rename.png"));
         renameButton.setBorder(BorderFactory.createTitledBorder("Rename"));
         renameButton.setMnemonic('R');
         renameButton.setToolTipText("press to rename exist product");
         renameButton.addActionListener(new renameActionListener());
         buttonsPanel.add(renameButton);
 
-        JButton deleteButton = new JButton(new ImageIcon("C:\\delete.png"));
+        JButton deleteButton = new JButton(new ImageIcon("src\\team1\\images\\delete.png"));
         deleteButton.setBorder(BorderFactory.createTitledBorder("Delete"));
         deleteButton.setMnemonic('D');
         deleteButton.setToolTipText("press to delete product");
         deleteButton.addActionListener(new deleteActionListener());
         buttonsPanel.add(deleteButton);
 
-        JButton findButton = new JButton(new ImageIcon("C:\\find.png"));
+        JButton findButton = new JButton(new ImageIcon("src\\team1\\images\\find.png"));
         findButton.setBorder(BorderFactory.createTitledBorder("Find"));
         findButton.setMnemonic('F');
         findButton.setToolTipText("press to find product");
@@ -116,7 +116,7 @@ public class AdminViewFrame extends JFrame{
         contentUsers.add(buttonsUserPanel, BorderLayout.SOUTH);
 
         //JButton addUserButton = new JButton("Add User");
-        JButton addUserButton = new JButton(new ImageIcon("C:\\addProduct.png"));
+        JButton addUserButton = new JButton(new ImageIcon("src\\team1\\images\\addProduct.png"));
         addUserButton.setBorder(BorderFactory.createTitledBorder("Add User"));
         addUserButton.setMnemonic('U');
         addUserButton.setToolTipText("press to add user");
