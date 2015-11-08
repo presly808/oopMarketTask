@@ -17,9 +17,6 @@ import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-/**
- * Created by Anya on 01.11.2015.
- */
 public class AdminViewFrame extends JFrame{
 
     public static final String PRINT_IMG_FILE = "src\\team1\\images\\print.png";
