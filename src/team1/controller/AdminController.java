@@ -76,7 +76,7 @@ public class AdminController implements IAdminController {
     }
 
     public void updateAdmins() throws ParseException {
-        String path = "C:\\AdminUsers.json";
+        String path = "src\\team1\\jsonFiles\\AdminUsers.json";
         File adminFile = new File(path);
         Scanner sc = null;
         try {
@@ -99,7 +99,7 @@ public class AdminController implements IAdminController {
     }
 
     public void updateSellers() throws ParseException {
-        String path = "C:\\SellerUsers.json";
+        String path = "src\\team1\\jsonFiles\\SellerUsers.json";
         File sellerFile = new File(path);
         Scanner sc = null;
         try {
@@ -122,7 +122,7 @@ public class AdminController implements IAdminController {
     }
 
     public void addToAdminFile(Admin admin) {
-        String path = "C:\\AdminUsers.json";
+        String path = "src\\team1\\jsonFiles\\AdminUsers.json";
         File jsonAdminFile = new File(path);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id", admin.getId());
@@ -140,7 +140,7 @@ public class AdminController implements IAdminController {
     }
 
     public void addToSellerFile(Seller seller) {
-        String path = "C:\\SellerUsers.json";
+        String path = "src\\team1\\jsonFiles\\SellerUsers.json";
         File jsonSellerFile = new File(path);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id", seller.getId());
@@ -158,7 +158,7 @@ public class AdminController implements IAdminController {
     }
 
     public void addToProductFile(Product product){
-        String path = "C:\\ProductFile.json";
+        String path = "src\\team1\\jsonFiles\\ProductFile.json";
         File jsonProductFile = new File(path);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("barcode", product.getBarCode());
@@ -176,7 +176,7 @@ public class AdminController implements IAdminController {
     }
 
     public void readFromProductFile() throws ParseException {
-        String path = "C:\\ProductFile.json";
+        String path = "src\\team1\\jsonFiles\\ProductFile.json";
         File jsonProductFile = new File(path);
         Scanner sc = null;
         try {
