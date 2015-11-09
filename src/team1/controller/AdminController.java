@@ -3,6 +3,7 @@ package team1.controller;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import team1.constant.ProjectConstants;
 import team1.model.*;
 
 import java.io.File;
@@ -14,6 +15,15 @@ import java.util.Scanner;
 
 
 public class AdminController implements IAdminController {
+
+    public static final String RESOURCES_JSON_PATH = ProjectConstants.RESOURCES_JSON_PATH;
+
+    public static final String SRC_TEAM1_JSON_FILES_PRODUCT_FILE_JSON = RESOURCES_JSON_PATH + "/ProductFile.json";
+    public static final String SRC_TEAM1_JSON_FILES_PRODUCT_FILE_JSON1 = RESOURCES_JSON_PATH + "/ProductFile.json";
+    public static final String SRC_TEAM1_JSON_FILES_SELLER_USERS_JSON = RESOURCES_JSON_PATH + "/SellerUsers.json";
+    public static final String SRC_TEAM1_JSON_FILES_ADMIN_USERS_JSON = RESOURCES_JSON_PATH + "/AdminUsers.json";
+    public static final String SRC_TEAM1_JSON_FILES_SELLER_USERS_JSON1 = RESOURCES_JSON_PATH + "/SellerUsers.json";
+    public static final String SRC_TEAM1_JSON_FILES_ADMIN_USERS_JSON1 = RESOURCES_JSON_PATH + "/AdminUsers.json";
 
     private MarketDB marketDB;
 
@@ -76,7 +86,7 @@ public class AdminController implements IAdminController {
     }
 
     public void updateAdmins() throws ParseException {
-        String path = "src\\team1\\jsonFiles\\AdminUsers.json";
+        String path = SRC_TEAM1_JSON_FILES_ADMIN_USERS_JSON1;
         File adminFile = new File(path);
         Scanner sc = null;
         try {
@@ -99,7 +109,7 @@ public class AdminController implements IAdminController {
     }
 
     public void updateSellers() throws ParseException {
-        String path = "src\\team1\\jsonFiles\\SellerUsers.json";
+        String path = SRC_TEAM1_JSON_FILES_SELLER_USERS_JSON1;
         File sellerFile = new File(path);
         Scanner sc = null;
         try {
@@ -122,7 +132,7 @@ public class AdminController implements IAdminController {
     }
 
     public void addToAdminFile(Admin admin) {
-        String path = "src\\team1\\jsonFiles\\AdminUsers.json";
+        String path = SRC_TEAM1_JSON_FILES_ADMIN_USERS_JSON;
         File jsonAdminFile = new File(path);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id", admin.getId());
@@ -140,7 +150,7 @@ public class AdminController implements IAdminController {
     }
 
     public void addToSellerFile(Seller seller) {
-        String path = "src\\team1\\jsonFiles\\SellerUsers.json";
+        String path = SRC_TEAM1_JSON_FILES_SELLER_USERS_JSON;
         File jsonSellerFile = new File(path);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id", seller.getId());
@@ -158,7 +168,7 @@ public class AdminController implements IAdminController {
     }
 
     public void addToProductFile(Product product){
-        String path = "src\\team1\\jsonFiles\\ProductFile.json";
+        String path = SRC_TEAM1_JSON_FILES_PRODUCT_FILE_JSON;
         File jsonProductFile = new File(path);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("barcode", product.getBarCode());
@@ -176,7 +186,7 @@ public class AdminController implements IAdminController {
     }
 
     public void readFromProductFile() throws ParseException {
-        String path = "src\\team1\\jsonFiles\\ProductFile.json";
+        String path = SRC_TEAM1_JSON_FILES_PRODUCT_FILE_JSON1;
         File jsonProductFile = new File(path);
         Scanner sc = null;
         try {
