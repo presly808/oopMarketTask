@@ -8,9 +8,7 @@ import team1.model.MarketDB;
 import team1.model.Product;
 import team1.model.Seller;
 
-/**
- * Created by serhii on 25.10.15.
- */
+
 public class RunApp {
 
     public static void main(String[] args) {
